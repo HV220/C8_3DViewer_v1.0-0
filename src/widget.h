@@ -8,6 +8,7 @@
 #include <QGuiApplication>
 #include <QTimer>
 #include <QMouseEvent>
+
 //#include "matrix_functions/s21_matrix.h"
 
 

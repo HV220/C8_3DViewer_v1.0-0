@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "matrix_functions/s21_matrix.h" //in this point will started a dream
+#include "s21_matrix.h" //in this point will started a dream
 
 typedef struct facets {
     int *vertexes;

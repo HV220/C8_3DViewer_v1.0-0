@@ -9,21 +9,22 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    matrix_functions/s21_matrix.c \
+    mainwindow.cpp \
+    s21_matrix.c \
     s21_parsing_object.c \
     s21_test.c \
     study.c \
     main.cpp \
-    mainwindow.cpp \
     widget.cpp
 
 HEADERS += \
-    matrix_functions/s21_matrix.h \
-    s21_parsing_object.h \
     mainwindow.h \
+    s21_matrix.h \
+    s21_parsing_object.h \
     widget.h
 
 FORMS += \
+    mainwindow.ui \
     widget.ui
 
 # Default rules for deployment.

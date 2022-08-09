@@ -6,27 +6,33 @@
 #include <QFileDialog>
 #include <QVector>
 #include <QImage>
+//#include "../QtGifImage-master/src/gifimage/qgifimage.h"
 #include <QPainter>
 #include <QPixmap>
 #include <QSize>
 extern "C" {
-//#include "s21_parsing_object.h"
-//#include "matrix_functions/s21_matrix.h"
+
 }
 
 namespace Ui {
 class MainWindow;
 }
 
-class mainwindow : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
 public:
-    explicit mainwindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+    int flag;
+    QVector<QImage> mas_image;
+    void on_comboBox_activated(int index);
 
 private slots:
 
-
+private:
+    Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H
