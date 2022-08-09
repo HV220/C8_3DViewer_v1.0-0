@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "./matrix_functions/s21_matrix.h"
+#include "./matrix_functions/s21_matrix.h" //in this point will started a dream 
 
 typedef struct facets {
     int *vertexes;
@@ -28,7 +28,6 @@ typedef struct data {
     matrix_t matrix;
     polygon_t *polygons;
 } data_t;
-
 /* functions for parsing .obj*/
 int count_vertexes_polygons(char *path_of_file, data_t *some_data);
 int create_matrix_obj(char *path_of_file, data_t *some_data);
