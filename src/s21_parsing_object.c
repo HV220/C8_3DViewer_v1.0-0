@@ -26,8 +26,8 @@ int count_vertexes_polygons(char *path_of_file, data_t *some_data) {
   some_data->count_of_polygons = 0;
   // s21_remove_matrix(&some_data->matrix);
   some_data->polygons = NULL;
-  FILE *file;
-  file = fopen(path_of_file, "r");
+  FILE *file = NULL;
+  file = fopen("./obj/easyCube.obj", "r");
   if (file != NULL) {
     printf("Congratulation. You are open the file\n");
     char *lineptr = NULL;
