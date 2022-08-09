@@ -50,5 +50,5 @@ clean:
 rebuild: clean all
 
 study: s21_parsing_object.c
-	$(GCC) $(CFLAGS) s21_parsing_object.c matrix_functions/s21_matrix.c study.c -o study.o
-	./study.o
+	$(GCC) $(CFLAGS) s21_parsing_object.c matrix_functions/s21_matrix.c study.c -o study.out
+	./study.out
