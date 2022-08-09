@@ -16,7 +16,7 @@ int main() {
   }
   printf("\n\n");
 
-  // s21_remove_matrix(&some_data.matrix);
+  s21_remove_matrix(&some_data.matrix);
 
   return 0;
 }

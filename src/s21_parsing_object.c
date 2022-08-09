@@ -24,12 +24,10 @@ int count_vertexes_polygons(char *path_of_file, data_t *some_data) {
   int cnt_polygons = 0;
   some_data->count_of_vertex = 0;
   some_data->count_of_polygons = 0;
-  // s21_remove_matrix(&some_data->matrix);
   some_data->polygons = NULL;
   FILE *file = NULL;
   file = fopen(path_of_file, "r");
   if (file != NULL) {
-    printf("Congratulation. You are open the file\n");
     char *lineptr = NULL;
     size_t n;
     while (getline(&lineptr, &n, file) != -1) {
@@ -42,7 +40,6 @@ int count_vertexes_polygons(char *path_of_file, data_t *some_data) {
     free(lineptr);
   } else {
     error = 1;
-//    printf("errno%d", Errno);
   }
   fclose(file);
   some_data->count_of_vertex = cnt_vertexs;
@@ -62,9 +59,7 @@ int create_matrix_obj(char *path_of_file, data_t *some_data) {
   FILE *file;
   file = fopen(path_of_file, "r");
   if (file != NULL) {
-    printf("Congratulation. You are open the file\n");
     s21_create_matrix(some_data->count_of_vertex, 3, &some_data->matrix);
-    printf("create matrix\n");
     char *lineptr = NULL;
     size_t n;
     int rows = 0, columns = 0;
@@ -93,8 +88,8 @@ int create_matrix_obj(char *path_of_file, data_t *some_data) {
         }
         rows++;
       }
-//      free(lineptr);
     }
+    free(lineptr);
   } else {
     error = 1;
   }

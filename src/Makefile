@@ -38,7 +38,7 @@ check:
 	cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h
 	python3 ../materials/linters/cpplint.py --extensions=c *.c *.h
 ifeq ($(OS), Darwin)
-	CK_FORK=no leaks --atExit -- ./study.o
+	CK_FORK=no leaks --atExit -- ./study.out
 else
 	valgrind ./test.out --leak-check=full
 endif
