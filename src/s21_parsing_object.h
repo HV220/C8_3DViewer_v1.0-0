@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef _USERS_CAULIFLB_C8_3DVIEWER_MY_SRC_S21_PARSING_OBJECT_H_
-#define _USERS_CAULIFLB_C8_3DVIEWER_MY_SRC_S21_PARSING_OBJECT_H_
+#ifndef SRC_S21_PARSING_OBJECT_H_
+#define SRC_S21_PARSING_OBJECT_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,4 +33,4 @@ typedef struct data {
 int count_vertexes_polygons(char *path_of_file, data_t *some_data);
 int create_matrix_obj(char *path_of_file, data_t *some_data);
 
-#endif  // _USERS_CAULIFLB_C8_3DVIEWER_MY_SRC_S21_PARSING_OBJECT_H_
+#endif  // SRC_S21_PARSING_OBJECT_H_

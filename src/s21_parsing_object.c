@@ -82,7 +82,6 @@ int create_matrix_obj(char *path_of_file, data_t *some_data) {
             double number = strtod(start_number, &finish_number);
             some_data->matrix.matrix[rows][columns] = number;
             columns++;
-            
           } else if (lineptr[index] == ' ') {
             continue;
           }
