@@ -27,7 +27,7 @@ int count_vertexes_polygons(char *path_of_file, data_t *some_data) {
   // s21_remove_matrix(&some_data->matrix);
   some_data->polygons = NULL;
   FILE *file = NULL;
-  file = fopen("./obj/easyCube.obj", "r");
+  file = fopen(path_of_file, "r");
   if (file != NULL) {
     printf("Congratulation. You are open the file\n");
     char *lineptr = NULL;
@@ -42,6 +42,7 @@ int count_vertexes_polygons(char *path_of_file, data_t *some_data) {
     free(lineptr);
   } else {
     error = 1;
+//    printf("errno%d", Errno);
   }
   fclose(file);
   some_data->count_of_vertex = cnt_vertexs;
@@ -68,9 +69,7 @@ int create_matrix_obj(char *path_of_file, data_t *some_data) {
     size_t n;
     int rows = 0, columns = 0;
     while (getline(&lineptr, &n, file) != -1) {
-      printf("bug\n");
       if (lineptr[0] == 'v' && lineptr[1] != 'n' && lineptr[1] != 't') {
-        printf("bug_2\n");
         for (int index = 2; (lineptr[index] != '\n') || (lineptr[index] != '\0');
              index++) {
           if (is_digit(lineptr[index]) == 0) {
@@ -81,14 +80,20 @@ int create_matrix_obj(char *path_of_file, data_t *some_data) {
             char *finish_number = &lineptr[--index];
             double number = strtod(start_number, &finish_number);
             some_data->matrix.matrix[rows][columns] = number;
-            columns++;
+
+            if (columns < 2) {
+              columns++;
+            } else {
+              columns = 0;
+              break;
+            }
           } else if (lineptr[index] == ' ') {
             continue;
           }
         }
         rows++;
       }
-      free(lineptr);
+//      free(lineptr);
     }
   } else {
     error = 1;
