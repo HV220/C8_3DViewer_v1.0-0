@@ -3,7 +3,7 @@
 int main() {
   char path_of_file[500] = "obj/easyCube.obj";
   data_t some_data;
-  count_vertexes_polygons(path_of_file, &some_data);
+   count_vertexes_polygons(path_of_file, &some_data);
   printf("There are %d vertexes and %d polygons\n", some_data.count_of_vertex,
          some_data.count_of_polygons);
   create_matrix_obj(path_of_file, &some_data);
