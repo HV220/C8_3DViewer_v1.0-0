@@ -45,7 +45,7 @@ endif
 	make clean
 
 clean:
-	rm -rf *.a *.o *.gc* *.out *.info test.out report s21_smart_calc
+	rm -rf *.a *.o *.gc* *.out *.info *.dSYM test.out report s21_smart_calc
 
 rebuild: clean all
 

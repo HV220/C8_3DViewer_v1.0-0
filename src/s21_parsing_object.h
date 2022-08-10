@@ -19,7 +19,7 @@
 
 typedef struct facets {
     int *vertexes;
-    int numbers_of_vertexes_in_facets;
+    unsigned int numbers_of_vertexes_in_facets;
 } polygon_t;
 
 typedef struct data {
@@ -32,6 +32,7 @@ typedef struct data {
 /* functions for parsing .obj*/
 int count_vertexes_polygons(char *path_of_file, data_t *some_data);
 int create_matrix_obj(char *path_of_file, data_t *some_data);
+int note_vertexes_polygons(char *path_of_file, data_t *some_data);
 
 /* functions for transforming object */
 void move_x(data_t *some_data, double a);

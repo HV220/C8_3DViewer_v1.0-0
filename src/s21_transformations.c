@@ -49,3 +49,7 @@ void rotation_by_oz(data_t *some_data, double angle) {
         some_data->matrix.matrix[i][2] = (-1) * temp_x * sin(angle) + temp_y * cos(angle);
     }
 }
+
+void scale_obj(data_t *some_data, double scale) {
+    s21_mult_number(some_data->matrix.matrix, scale, some_data->matrix.matrix);
+}

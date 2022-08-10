@@ -1,7 +1,7 @@
 #include "s21_parsing_object.h"
 
 int main() {
-  char path_of_file[500] = "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/easyCube.obj";
+  char path_of_file[500] = "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/Car.obj";
   data_t some_data;
   count_vertexes_polygons(path_of_file, &some_data);
   printf("There are %d vertexes and %d polygons\n", some_data.count_of_vertex,
@@ -17,6 +17,5 @@ int main() {
   printf("\n\n");
 
   s21_remove_matrix(&some_data.matrix);
-
   return 0;
 }
