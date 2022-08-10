@@ -12,8 +12,6 @@ SOURCES += \
     mainwindow.cpp \
     s21_matrix.c \
     s21_parsing_object.c \
-    s21_test.c \
-    study.c \
     main.cpp \
     widget.cpp
 

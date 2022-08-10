@@ -14,7 +14,7 @@
 
 extern "C" {
 #include "s21_parsing_object.h"
-//#include "matrix_functions/s21_matrix.h"
+//#include "s21_matrix.h"
 }
 
 QT_BEGIN_NAMESPACE

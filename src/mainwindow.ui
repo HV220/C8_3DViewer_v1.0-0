@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="vertexsize_hi">
     <property name="geometry">
      <rect>
       <x>1420</x>
@@ -27,7 +27,7 @@
      <string>Hi</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox">
+   <widget class="QSpinBox" name="spinBox_scale">
     <property name="geometry">
      <rect>
       <x>1140</x>
@@ -37,7 +37,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="vertexcolor_red">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -63,7 +63,7 @@
      <string>--VertexType--</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="vertexcolor_green">
     <property name="geometry">
      <rect>
       <x>1260</x>
@@ -76,7 +76,7 @@
      <string>Green</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_15">
+   <widget class="QPushButton" name="edgecolor_green">
     <property name="geometry">
      <rect>
       <x>1260</x>
@@ -89,7 +89,7 @@
      <string>Green</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_22">
+   <widget class="QPushButton" name="perspective">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -115,7 +115,7 @@
      <string>--VertexColor--</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_14">
+   <widget class="QPushButton" name="edgecolor_blue">
     <property name="geometry">
      <rect>
       <x>1420</x>
@@ -128,7 +128,7 @@
      <string>Blue</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_23">
+   <widget class="QPushButton" name="stipple_off">
     <property name="geometry">
      <rect>
       <x>1320</x>
@@ -141,7 +141,7 @@
      <string>Stipple OFF</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="vertexsize_lo">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -154,7 +154,7 @@
      <string>Lo</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="vertextype_square">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -167,7 +167,7 @@
      <string>Square</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_17">
+   <widget class="QPushButton" name="background_grey">
     <property name="geometry">
      <rect>
       <x>1260</x>
@@ -180,7 +180,7 @@
      <string>Grey</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_18">
+   <widget class="QPushButton" name="background_white">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -193,7 +193,7 @@
      <string>White</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_19">
+   <widget class="QPushButton" name="crazy_color">
     <property name="geometry">
      <rect>
       <x>1320</x>
@@ -206,7 +206,7 @@
      <string>Crazy Color</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_20">
+   <widget class="QPushButton" name="standart_color">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -219,7 +219,7 @@
      <string>Standart Color</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_24">
+   <widget class="QPushButton" name="stipple_on">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -232,7 +232,7 @@
      <string>Stipple ON</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="vertexcolor_blue">
     <property name="geometry">
      <rect>
       <x>1420</x>
@@ -245,7 +245,7 @@
      <string>Blue</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_3">
+   <widget class="QSpinBox" name="spinBox_rot_1">
     <property name="geometry">
      <rect>
       <x>1430</x>
@@ -255,7 +255,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_2">
+   <widget class="QSpinBox" name="spinBox_rot_2">
     <property name="geometry">
      <rect>
       <x>1330</x>
@@ -265,7 +265,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_16">
+   <widget class="QPushButton" name="background_black">
     <property name="geometry">
      <rect>
       <x>1420</x>
@@ -291,7 +291,7 @@
      <string>-Rotation-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="vertexsize_mid">
     <property name="geometry">
      <rect>
       <x>1260</x>
@@ -304,7 +304,7 @@
      <string>Mid</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_13">
+   <widget class="QPushButton" name="edgesize_hi">
     <property name="geometry">
      <rect>
       <x>1420</x>
@@ -330,7 +330,7 @@
      <string>--EdgeColor--</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_9">
+   <widget class="QPushButton" name="vertextype_round">
     <property name="geometry">
      <rect>
       <x>1320</x>
@@ -369,7 +369,7 @@
      <string>Screenshot</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_11">
+   <widget class="QPushButton" name="edgecolor_red">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -382,7 +382,7 @@
      <string>Red</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_21">
+   <widget class="QPushButton" name="orthographic">
     <property name="geometry">
      <rect>
       <x>1320</x>
@@ -434,7 +434,7 @@
      <string>--Background--</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_12">
+   <widget class="QPushButton" name="edgesize_lo">
     <property name="geometry">
      <rect>
       <x>1090</x>
@@ -447,17 +447,7 @@
      <string>Lo</string>
     </property>
    </widget>
-   <widget class="QOpenGLWidget" name="openGLWidget">
-    <property name="geometry">
-     <rect>
-      <x>19</x>
-      <y>9</y>
-      <width>1031</width>
-      <height>811</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QPushButton" name="edgesize_mid">
     <property name="geometry">
      <rect>
       <x>1260</x>
@@ -470,7 +460,7 @@
      <string>Mid</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="download_obj">
     <property name="geometry">
      <rect>
       <x>1260</x>
@@ -483,18 +473,17 @@
      <string>Open .obj</string>
     </property>
    </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1081</width>
+      <height>731</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1754</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

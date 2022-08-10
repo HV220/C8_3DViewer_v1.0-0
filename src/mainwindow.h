@@ -11,7 +11,7 @@
 #include <QPixmap>
 #include <QSize>
 extern "C" {
-
+#include "s21_parsing_object.h"
 }
 
 namespace Ui {
