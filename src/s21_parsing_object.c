@@ -145,10 +145,10 @@ int help_funk_vertexes_polygons(char *lineptr, data_t *some_data,
           i++;
         }
         tmp_polygon = atoi(tmp);
-        some_data->polygons[count_polygon].vertexes[j] = tmp_polygon;
+        some_data->polygons[count_polygon].vertexes[j] = tmp_polygon-1;
         j++;
         if (j % 2 == 0) {
-          some_data->polygons[count_polygon].vertexes[j] = tmp_polygon;
+          some_data->polygons[count_polygon].vertexes[j] = tmp_polygon-1;
           j++;
         }
         if (j+1 == some_data->polygons[count_polygon].numbers_of_vertexes_in_facets*2) {
