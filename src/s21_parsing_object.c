@@ -107,9 +107,10 @@ int create_matrix_obj(char *path_of_file, data_t *some_data) {
 int note_vertexes_polygons(char *path_of_file, data_t *some_data) {
     int error = 0;
     FILE *file;
-    int j = 0;
-    some_data->polygons = calloc(0, sizeof *some_data->polygons);
+    some_data->polygons =
+        calloc(some_data->count_of_polygons + 1, sizeof *some_data->polygons);
     file = fopen(path_of_file, "r");
+    int count = 0;
     if (file != NULL) {
         char *lineptr = NULL;
         size_t n;
@@ -118,27 +119,54 @@ int note_vertexes_polygons(char *path_of_file, data_t *some_data) {
                 for (size_t i = 1; lineptr[i]; i++) {
                     if (lineptr[i] >= '0' && lineptr[i] <= '9') {
                         if (lineptr[i - 1] == ' ') {
-                            some_data->polygons->vertexes =
-                                realloc(some_data->polygons->vertexes, j + 1);
-                            char tmp[10] = "";
-                            while (lineptr[i] >= '0' && lineptr[i] <= '9') {
-                                strncat(tmp, lineptr + i, 1);
-                                i++;
-                            }
-                            some_data->polygons->vertexes[j] = atoi(tmp);
-                            some_data->polygons
-                                ->numbers_of_vertexes_in_facets++;
-                            j++;
+                            some_data->polygons[count]
+                                .numbers_of_vertexes_in_facets++;
                         }
                     }
                 }
+                help_funk_vertexes_polygons(lineptr, some_data, count);
+                count++;
             }
         }
         free(lineptr);
     } else {
         error = 1;
     }
-
     fclose(file);
+    return error;
+}
+
+int help_funk_vertexes_polygons(char *lineptr, data_t *some_data,
+                                int count_polygon) {
+    int error = 0;
+    int tmp_polygon;
+    int j = 0;
+    some_data->polygons[count_polygon].vertexes = calloc(
+        some_data->polygons[count_polygon].numbers_of_vertexes_in_facets * 2,
+        sizeof(int));
+    for (size_t i = 1; lineptr[i]; i++) {
+        if (lineptr[i] >= '0' && lineptr[i] <= '9') {
+            if (lineptr[i - 1] == ' ') {
+                char tmp[10] = "";
+                while (lineptr[i] >= '0' && lineptr[i] <= '9') {
+                    strncat(tmp, lineptr + i, 1);
+                    i++;
+                }
+                tmp_polygon = atoi(tmp);
+                some_data->polygons[count_polygon].vertexes[j] = tmp_polygon;
+                j++;
+            }
+            if (j == 2) {
+                some_data->polygons[count_polygon].vertexes[j] = tmp_polygon;
+                j++;
+            }
+            if (j == 4) {
+                some_data->polygons[count_polygon].vertexes[j] = tmp_polygon;
+                j++;
+                some_data->polygons[count_polygon].vertexes[j] =
+                    some_data->polygons[count_polygon].vertexes[0];
+            }
+         }
+    }
     return error;
 }
