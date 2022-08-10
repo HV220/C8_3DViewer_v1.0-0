@@ -38,17 +38,17 @@ check:
 	cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h
 	python3 ../materials/linters/cpplint.py --extensions=c *.c *.h
 ifeq ($(OS), Darwin)
-	CK_FORK=no leaks --atExit -- ./study.o
+	CK_FORK=no leaks --atExit -- ./study.out
 else
 	valgrind ./test.out --leak-check=full
 endif
 	make clean
 
 clean:
-	rm -rf *.a *.o *.gc* *.out *.info test.out report s21_smart_calc
+	rm -rf *.a *.o *.gc* *.out *.info *.dSYM test.out report s21_smart_calc
 
 rebuild: clean all
 
 study: s21_parsing_object.c
-	$(GCC) $(CFLAGS) s21_parsing_object.c matrix_functions/s21_matrix.c study.c -o study.o
-	./study.o
+	$(GCC) $(CFLAGS) s21_parsing_object.c matrix_functions/s21_matrix.c study.c -o study.out
+	./study.out
