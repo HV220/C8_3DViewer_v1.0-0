@@ -156,18 +156,6 @@ int help_funk_vertexes_polygons(char *lineptr, data_t *some_data,
               some_data->polygons[count_polygon].vertexes[0];
         }
       }
-
-      // if (j == 2) {
-      //     some_data->polygons[count_polygon].vertexes[j] = tmp_polygon;
-      //     j++;
-      // }
-      // if (j == 4) {
-      //     some_data->polygons[count_polygon].vertexes[j] = tmp_polygon;
-      //     j++;
-      //     some_data->polygons[count_polygon].vertexes[j] =
-      //         some_data->polygons[count_polygon].vertexes[0];
-
-      // }
     }
   }
   return error;
