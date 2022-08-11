@@ -176,22 +176,77 @@ void  Widget::paintGL()
 void Widget:: start()
 {
     QString path_to_file = QFileDialog::getOpenFileName(NULL, "Open", "/Users/", "*.obj");
+    QByteArray tmp = path_to_file.toLocal8Bit();
+    char* name_of_file = tmp.data();
 
-//    QString path_to_file = QFileDialog::getOpenFileName(NULL, "Open", "/Users/corkiudy/C8_3DViewer_v1.0-0/src/gryffind_dev/obj", "*.obj");
-char* filename = new char[path_to_file.length()];
-QByteArray barr = path_to_file.toLatin1();
-strlcpy(filename, barr, path_to_file.length() + 1);
-fiename_global = filename;
-//     username[40] = system("whoami");
-//    char filename[100] = "/Users/corkiudy/C8_3DViewer_v1.0-0/src/gryffind_dev/obj/deparse.obj";
-//    char filename[100] = "/Users/gryffind/C8_3DViewer_v1.0-1/src/gryffind_dev/obj/cat.obj";
-obj.count_of_polygons = 0;
-obj.count_of_vertex = 0;
-//if (!(filename, &obj)) {
-//parsing_matrix(filename, &obj);
+    if (!name_of_file) { errors(2); return; }
+    if  (validation_of_files(name_of_file)) return;
 
-/*} else {*/
-    QMessageBox::warning(this, "Внимание","File not open");
+       glTranslatef(0,0,-4);
+
+       double *vertex = (double *)calloc(some_data.count_of_vertex*6, sizeof(double));
+       unsigned int *facets = (unsigned int *)calloc(some_data.count_of_polygons * 10, sizeof(unsigned int));
+
+       for (int i = 0, k = 0; i < some_data.matrix.rows; i++) {
+           for (int j = 0; j < some_data.matrix.columns; j++, k++) {
+               vertex[k] = some_data.matrix.matrix[i][j];
+           }
+       }
+       for (int i = 0, k = 0;i < some_data.count_of_polygons ; i++) {
+           for (int j = 0; j < some_data.polygons[i].numbers_of_vertexes_in_facets*2; j++, k++) {
+                facets[k] = some_data.polygons[i].vertexes[j];
+           }
+       }
+
+          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+          glClearColor(r1, g1, b1, 1);
+          glClear(GL_COLOR_BUFFER_BIT);
+          glMatrixMode(GL_MODELVIEW);
+          glLoadIdentity();
+          glRotatef(xRot, 1.0, 0.0, 0.0);
+          glRotatef(yRot, 0.0, 1.0, 0.0);
+          glColor4f(0.1, 0.75, 0.3, 1);
+
+
+          if (line_type) {
+              glLineStipple(20, 0x3333);
+              glEnable(GL_LINE_STIPPLE);
+          }
+          glPointSize(point_size);
+          for (int i = 0; i < some_data.count_of_vertex + 1; i++) {
+              if (color_point == 1) {
+              } else if (color_point == 2) {
+                  glEnable(GL_POINT_SMOOTH);
+                  glBegin(GL_POINT_SMOOTH);
+                  glEnd();
+                  glDisable(GL_POINT_SMOOTH);
+              } else if (color_point == 3) {
+                  glBegin(GL_POINT);
+                  glEnd();
+              }
+          }
+
+              glLineWidth(width);
+              glVertexPointer(3, GL_DOUBLE, 0, vertex);
+              glEnableClientState(GL_VERTEX_ARRAY);
+              glPolygonMode(GL_FRONT,GL_FILL);
+              glPolygonMode(GL_RED,GL_LINE);
+
+              glColor4f(r2, g2, b2, 1);
+              glDrawElements(GL_POINTS, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
+              glColor4f(r, g, b, 1);
+              glDrawElements(GL_LINES, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
+              glEnableClientState(GL_VERTEX_ARRAY);
+              glPolygonMode(GL_FRONT,GL_FILL);
+              glPolygonMode(GL_RED,GL_LINE);
+
+              glDrawElements(GL_POINTS, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
+
+              glDisable(GL_POINT_SMOOTH);
+              glDisable(GL_LINE_STIPPLE);
+              glDisableClientState(GL_VERTEX_ARRAY);
+              free(vertex);
+              free(facets);
 }
 
 void Widget::change_color()
@@ -206,4 +261,34 @@ void Widget::change_color()
 ////           ui->test_console->b1 = 0;
 ////       }
        //ui->test_console->update();
+}
+
+int Widget::validation_of_files(char* name_file) {
+    if(count_vertexes_polygons(name_file, &some_data)) { errors(3); return 1; }
+    if(create_matrix_obj(name_file, &some_data)) { errors(4); return 1; }
+    if(note_vertexes_polygons(name_file, &some_data)) { errors(5); return 1; }
+    return 0;
+}
+
+void Widget::errors(int error) {
+    switch (error) {
+    case 1:
+        QMessageBox::warning(this, "Внимание","File not open");
+        break;
+    case 2:
+        QMessageBox::warning(this, "Внимание","File not exist");
+        break;
+    case 3:
+        QMessageBox::warning(this, "Внимание","File doesnot parsed");
+        break;
+    case 4:
+        QMessageBox::warning(this, "Внимание","File doesnot create_matrix_obj");
+        break;
+    case 5:
+        QMessageBox::warning(this, "Внимание","File doesnot note_vertexes_polygons");
+        break;
+    default:
+        break;
+    }
+
 }

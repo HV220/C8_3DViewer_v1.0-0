@@ -11,10 +11,6 @@
 #include <QPixmap>
 #include <QSize>
 
-extern "C" {
-
-}
-
 namespace Ui {
 class MainWindow;
 }

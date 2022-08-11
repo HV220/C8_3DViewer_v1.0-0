@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.0, 2022-08-11T16:37:17. -->
+<!-- Written by QtCreator 7.0.0, 2022-08-11T18:02:14. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -237,7 +237,10 @@
     <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
+     <value type="QString">DYLD_FRAMEWORK_PATH</value>
+     <value type="QString">DYLD_LIBRARY_PATH</value>
+    </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/aladales/project_school21/C8_3DViewer_v1.0-0/src/s21_3dviewer/s21_3dviewer.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/Users/aladales/project_school21/C8_3DViewer_v1.0-0/src/s21_3dviewer/s21_3dviewer.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>

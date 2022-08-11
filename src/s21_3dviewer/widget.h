@@ -9,12 +9,8 @@
 #include <QTimer>
 #include <QMouseEvent>
 
-//#include "matrix_functions/s21_matrix.h"
-
-
 extern "C" {
-#include "s21_parsing_object.h"
-//#include "matrix_functions/s21_matrix.h"
+#include "../backend/s21_parsing_object.h"
 }
 
 QT_BEGIN_NAMESPACE
@@ -45,11 +41,13 @@ public:
     int flag_for_start;
     char *fiename_global;
 
-    data_t obj;
+    data_t some_data;
 
 public slots:
     void change_color();
 private:
     Ui::Widget *ui;
+    int validation_of_files(char* name_file);
+    void errors(int error);
 };
 #endif // WIDGET_H
