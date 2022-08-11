@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "./matrix_functions/s21_matrix.h"
+#include "matrix_lib/s21_matrix.h"
 
 typedef struct facets {
     int *vertexes;
