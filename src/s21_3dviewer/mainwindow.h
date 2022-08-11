@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QSize>
+
 extern "C" {
 
 }
@@ -26,10 +27,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     int flag;
-    QVector<QImage> mas_image;
-    void on_comboBox_activated(int index);
+    Widget *p_test;
 
 private slots:
+    void on_download_obj_clicked();
+
+
+    void on_edgecol_red_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -13,16 +13,15 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QWidget" name="gridLayoutWidget">
+  <widget class="QWidget" name="test_console" native="true">
    <property name="geometry">
     <rect>
-     <x>1030</x>
+     <x>0</x>
      <y>0</y>
-     <width>2</width>
-     <height>2</height>
+     <width>1551</width>
+     <height>811</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout"/>
   </widget>
  </widget>
  <resources/>

@@ -24,7 +24,9 @@ QT_END_NAMESPACE
 class Widget : public QOpenGLWidget
 {
     Q_OBJECT
-private:
+public:
+    Widget(QWidget *parent = nullptr);
+    ~Widget();
     double xRot, yRot, zRot;
     QPoint mPos;
     void mousePressEvent(QMouseEvent *) override;
@@ -32,10 +34,6 @@ private:
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
-
-public:
-    Widget(QWidget *parent = nullptr);
-    ~Widget();
     void start();
     double r, g, b;
     double r1, g1, b1;
@@ -49,7 +47,8 @@ public:
 
     data_t obj;
 
-
+public slots:
+    void change_color();
 private:
     Ui::Widget *ui;
 };
