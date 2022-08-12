@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->widget_1, SIGNAL(clicked()), this, SLOT(on_download_obj_clicked()));
 }
 
 MainWindow::~MainWindow()
@@ -20,13 +19,10 @@ void MainWindow::on_download_obj_clicked()
 {
     p_test = new Widget(this);
     p_test->show();
-
 }
-
 
 void MainWindow::on_edgecol_red_clicked()
 {
-    p_test = new Widget(this);
-    p_test->change_color();
+
 }
 

@@ -27,27 +27,30 @@ public:
     QPoint mPos;
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
-    void initializeGL() override;
-    void resizeGL(int w, int h) override;
-    void paintGL() override;
-    void start();
     double r, g, b;
     double r1, g1, b1;
     double r2, g2, b2;
     double width;
+    int min_x, max_x,min_y, max_y, min_z, max_z;
     int line_type;
     int color_point;
     double point_size;
     int flag_for_start;
     char *fiename_global;
-
+    double *vertex;
+    unsigned int *facets;
     data_t some_data;
 
 public slots:
-    void change_color();
+    //void change_color();
 private:
     Ui::Widget *ui;
+    void initializeGL() override;
+    void resizeGL(int w, int h) override;
+    void paintGL() override;
     int validation_of_files(char* name_file);
     void errors(int error);
+    void parcing_3d_files();
+    void check_vertex_min_max(double check, int choise);
 };
 #endif // WIDGET_H

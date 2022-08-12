@@ -67,8 +67,10 @@ int create_matrix_obj(char *path_of_file, data_t *some_data) {
       if (lineptr[0] == 'v' && lineptr[1] != 'n' && lineptr[1] != 't') {
         for (int index = 2;
              (lineptr[index] != '\n') || (lineptr[index] != '\0'); index++) {
-          if (is_digit(lineptr[index]) == 0) {
+
+            if (is_digit(lineptr[index]) == 0 || lineptr[index] == '-') {
             char *start_number = &lineptr[index];
+            if(lineptr[index] == '-') index++;
             while (is_digit(lineptr[index]) == 0) {
               index++;
             }
