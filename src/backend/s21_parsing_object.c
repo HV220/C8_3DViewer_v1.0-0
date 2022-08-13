@@ -67,10 +67,9 @@ int create_matrix_obj(char *path_of_file, data_t *some_data) {
       if (lineptr[0] == 'v' && lineptr[1] != 'n' && lineptr[1] != 't') {
         for (int index = 2;
              (lineptr[index] != '\n') || (lineptr[index] != '\0'); index++) {
-
-            if (is_digit(lineptr[index]) == 0 || lineptr[index] == '-') {
+          if (is_digit(lineptr[index]) == 0 || lineptr[index] == '-') {
             char *start_number = &lineptr[index];
-            if(lineptr[index] == '-') index++;
+            if (lineptr[index] == '-') index++;
             while (is_digit(lineptr[index]) == 0) {
               index++;
             }
@@ -147,13 +146,15 @@ int help_funk_vertexes_polygons(char *lineptr, data_t *some_data,
           i++;
         }
         tmp_polygon = atoi(tmp);
-        some_data->polygons[count_polygon].vertexes[j] = tmp_polygon-1;
+        some_data->polygons[count_polygon].vertexes[j] = tmp_polygon - 1;
         j++;
         if (j % 2 == 0) {
-          some_data->polygons[count_polygon].vertexes[j] = tmp_polygon-1;
+          some_data->polygons[count_polygon].vertexes[j] = tmp_polygon - 1;
           j++;
         }
-        if (j+1 == some_data->polygons[count_polygon].numbers_of_vertexes_in_facets*2) {
+        if (j + 1 ==
+            some_data->polygons[count_polygon].numbers_of_vertexes_in_facets *
+                2) {
           some_data->polygons[count_polygon].vertexes[j] =
               some_data->polygons[count_polygon].vertexes[0];
         }

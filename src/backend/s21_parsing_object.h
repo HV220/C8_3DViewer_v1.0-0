@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef SRC_S21_PARSING_OBJECT_H_
-#define SRC_S21_PARSING_OBJECT_H_
+#ifndef SRC_BACKEND_S21_PARSING_OBJECT_H_
+#define SRC_BACKEND_S21_PARSING_OBJECT_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,4 +44,4 @@ void rotation_by_ox(data_t *some_data, double angle);
 void rotation_by_oy(data_t *some_data, double angle);
 void rotation_by_oz(data_t *some_data, double angle);
 
-#endif  // SRC_S21_PARSING_OBJECT_H_
+#endif  // SRC_BACKEND_S21_PARSING_OBJECT_H_
