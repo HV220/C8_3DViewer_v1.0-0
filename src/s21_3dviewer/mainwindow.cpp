@@ -21,8 +21,26 @@ void MainWindow::on_download_obj_clicked()
     p_test->show();
 }
 
-void MainWindow::on_edgecol_red_clicked()
+
+
+
+
+void MainWindow::on_change_move_clicked()
 {
+    double x = ui->move_x->text().toDouble();
+    double y = ui->move_x->text().toDouble();
+    double z = ui->move_x->text().toDouble();
+
+//    p_test = new Widget(this);
+//    p_test->show();
+}
+
+
+void MainWindow::on_change_rot_clicked()
+{
+    double x = ui->move_x->text().toDouble();
+    double y = ui->move_x->text().toDouble();
+    double z = ui->move_x->text().toDouble();
 
 }
 

@@ -24,17 +24,20 @@ void Widget::initializeGL() {
 
 void Widget::resizeGL(int w, int h) {
     glViewport(0,0,w,h);
-         glMatrixMode(GL_PROJECTION);
-         glLoadIdentity();
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
 
-         min_x*=1.2;
-         max_x*=1.2;
-         min_y*=1.2;
-         max_y*=1.2;
-         min_z*=1.2;
-         max_z*=1.2;
-         glOrtho(min_x,max_x,min_y,max_y,min_z,max_z);
-         glFrustum(min_x,max_x,min_y,max_y,min_z,max_z);
+            int min = -484;
+            int max =  338;
+               if (qFabs(min) > max) {
+                       max = qFabs(min);
+                   } else if (max > qFabs(min)) {
+                       min = -max;
+                   }
+                   min*=1.2;
+                   max*=1.2;
+            glOrtho(min,max,min,max,min,max);
+            glFrustum(min,max,min,max,min,max);
 
 }
 
@@ -58,8 +61,8 @@ void Widget::paintGL() {
         glColor4f(0.1, 0.75, 0.3, 1);
         glDrawElements(GL_POINTS, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
         glDrawElements(GL_LINES, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
-        glDisable(GL_POINT_SMOOTH);
-        glDisable(GL_LINE_STIPPLE);
+//        glDisable(GL_POINT_SMOOTH);
+//        glDisable(GL_LINE_STIPPLE);
         glDisableClientState(GL_VERTEX_ARRAY);
 }
 

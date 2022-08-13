@@ -544,7 +544,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="rot_x">
     <property name="geometry">
      <rect>
       <x>1260</x>
@@ -554,7 +554,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="rot_y">
     <property name="geometry">
      <rect>
       <x>1360</x>
@@ -564,7 +564,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="rot_z">
     <property name="geometry">
      <rect>
       <x>1460</x>
@@ -602,6 +602,19 @@
       <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="change">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>640</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change</string>
     </property>
    </widget>
   </widget>
