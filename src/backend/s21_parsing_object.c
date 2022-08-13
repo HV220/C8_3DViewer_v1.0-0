@@ -163,24 +163,12 @@ int help_funk_vertexes_polygons(char *lineptr, data_t *some_data,
   }
   return error;
 }
-void move_x(data_t *some_data, double a) {
-    for (int i = 0; i < some_data->matrix.rows; i++) some_data->matrix.matrix[i][0] += a;
-}
-
-/**
- * @brief движение по оси x, где 1 отвечает
- * за изменение данных из столбца по Y
- */
-void move_y(data_t *some_data, double a) {
-    for (int i = 0; i < some_data->matrix.rows; i++) some_data->matrix.matrix[i][1] += a;
-}
-
-/**
- * @brief движение по оси x, где 2 отвечает
- * за изменение данных из столбца по Z
- */
-void move_z(data_t *some_data, double a) {
-    for (int i = 0; i < some_data->matrix.rows; i++) some_data->matrix.matrix[i][2] += a;
+void move_obj(data_t *some_data, double x, double y, double z) {
+    for (int i = 0; i < some_data->matrix.rows; i++) {
+        some_data->matrix.matrix[i][0] += x;
+        some_data->matrix.matrix[i][1] += y;
+        some_data->matrix.matrix[i][2] += z;
+    }
 }
 
 void rotation_by_ox(data_t *some_data, double angle) {
