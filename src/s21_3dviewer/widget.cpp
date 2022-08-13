@@ -26,16 +26,15 @@ void Widget::resizeGL(int w, int h) {
     glViewport(0,0,w,h);
          glMatrixMode(GL_PROJECTION);
          glLoadIdentity();
+         double coef = 1.2;
+         min_x*=coef;
+         max_x*=coef;
+         min_y*=coef;
+         max_y*=coef;
+         min_z*=coef;
+         max_z*=coef;
 
-         min_x*=1.2;
-         max_x*=1.2;
-         min_y*=1.2;
-         max_y*=1.2;
-         min_z*=1.2;
-         max_z*=1.2;
-         glOrtho(min_x,max_x,min_y,max_y,min_z,max_z);
-         glFrustum(min_x,max_x,min_y,max_y,min_z,max_z);
-
+         gluPerspective(60, (max_x-min_x)/(max_y-min_y), 1, 800);
 }
 
 
@@ -45,11 +44,9 @@ void Widget::paintGL() {
         glClear(GL_COLOR_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        glRotatef(xRot, 1.0, 0.0, 0.0);
-        glRotatef(yRot, 0.0, 1.0, 0.0);
-
-
-        glTranslatef(0, 0, -4);
+        glRotatef(xRot, 1.0, 0.0, 0);
+        glRotatef(yRot, 0.0, 1.0, 0);
+        glTranslatef(0,min_y,min_z);
         glVertexPointer(3, GL_DOUBLE, 0, vertex);
         glPointSize(10);
         glColor3d(10,0,0);
@@ -88,7 +85,7 @@ void Widget::errors(int error) {
         QMessageBox::warning(this, "Внимание","File not exist");
         break;
     case 3:
-        QMessageBox::warning(this, "Внимание","File doesnot parsed");
+        QMessageBox::warning(this, "Внимание","File doesnot changed");
         break;
     case 4:
         QMessageBox::warning(this, "Внимание","File doesnot create_matrix_obj");
@@ -111,8 +108,6 @@ void Widget:: parcing_3d_files()
     if (!name_of_file) { errors(2); return; }
     if  (validation_of_files(name_of_file)) return;
 
-       glTranslatef(0,0,-4);
-
        vertex = (double *)calloc(some_data.count_of_vertex*3, sizeof(double));
        facets = (unsigned int *)calloc(some_data.count_of_polygons*10, sizeof(unsigned int));
        for (int i = 0, k = 0; i < some_data.matrix.rows; i++) {
@@ -121,7 +116,13 @@ void Widget:: parcing_3d_files()
                if(k == 0)
                {
                min_x = vertex[k]; max_x = vertex[k];
+               }
+               else if(k == 1)
+               {
                min_y = vertex[k]; max_y = vertex[k];
+               }
+               else if(k == 2)
+               {
                min_z = vertex[k]; max_z = vertex[k];
                }
                else
@@ -144,26 +145,17 @@ void Widget:: check_vertex_min_max(double check, int choise) {
 
     switch (choise) {
     case 1:
-               if (qFabs(min_x) > check) {
-                       max_x = qFabs(check);
-                   } else if (check > qFabs(min_x)) {
-                       min_x = -check;
-                   }
+        if(std::less<double>{}(max_x, check)) max_x = check;
+        if(std::greater<double>{}(min_x, check)) min_x = check;
         break;
     case 2:
-        if (qFabs(min_y) > check) {
-                max_y = qFabs(check);
-            } else if (check > qFabs(min_y)) {
-                min_y = -check;
-            }
+        if(std::less<double>{}(max_y, check)) max_y = check;
+        if(std::greater<double>{}(min_y, check)) min_y = check;
         break;
     case 3:
-        if (qFabs(min_z) > check) {
-                max_y = qFabs(check);
-            } else if (check > qFabs(min_z)) {
-                min_z = -check;
-            }
+        if(std::less<double>{}(max_z, check)) max_z = check;
+        if(std::greater<double>{}(min_z, check)) min_z = check;
         break;
     }
-
 }
+

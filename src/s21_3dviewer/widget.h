@@ -8,6 +8,7 @@
 #include <QGuiApplication>
 #include <QTimer>
 #include <QMouseEvent>
+#include <glu.h>
 
 extern "C" {
 #include "../backend/s21_parsing_object.h"
@@ -31,7 +32,7 @@ public:
     double r1, g1, b1;
     double r2, g2, b2;
     double width;
-    int min_x, max_x,min_y, max_y, min_z, max_z;
+    double min_x, max_x,min_y, max_y, min_z, max_z;
     int line_type;
     int color_point;
     double point_size;
