@@ -219,3 +219,17 @@ void Widget::for_move(double x, double y, double z)
 //    }
     update();
 }
+
+void Widget::for_rot(double x, double y, double z)
+{
+    rotation_by_ox(&some_data, x);
+    rotation_by_oy(&some_data, y);
+    rotation_by_oz(&some_data, z);
+    update();
+}
+
+void Widget::for_scale(double x)
+{
+    scale_obj(&some_data, x);
+    update();
+}

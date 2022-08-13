@@ -33,6 +33,8 @@ private slots:
 
     void on_change_rot_clicked();
 
+    void on_change_scale_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -45,6 +45,8 @@ public:
 public slots:
     //void change_color();
     void for_move(double x, double y, double z);
+    void for_rot(double x, double y, double z);
+    void for_scale(double x);
 private:
     Ui::Widget *ui;
     void initializeGL() override;

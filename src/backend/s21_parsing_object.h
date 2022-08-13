@@ -41,7 +41,7 @@ void move_obj(data_t *some_data, double x, double y, double z);
 void rotation_by_ox(data_t *some_data, double angle);
 void rotation_by_oy(data_t *some_data, double angle);
 void rotation_by_oz(data_t *some_data, double angle);
-//void change_coor(data_t *some_data, double x, double y, double z);
-
+void scale_obj(data_t *some_data, double scale);
+void get_max_min_frustum(double *max, double *min, data_t obj);
 
 #endif  // SRC_BACKEND_S21_PARSING_OBJECT_H_

@@ -45,8 +45,18 @@ void MainWindow::on_change_move_clicked()
 
 void MainWindow::on_change_rot_clicked()
 {
-    double x = ui->move_x->text().toDouble();
-    double y = ui->move_x->text().toDouble();
-    double z = ui->move_x->text().toDouble();
+    double x = ui->rot_x->text().toDouble();
+    double y = ui->rot_y->text().toDouble();
+    double z = ui->rot_z->text().toDouble();
+    p_test->for_rot(x, y, z);
+    ui->widget->update();
+}
+
+
+void MainWindow::on_change_scale_clicked()
+{
+    double x = ui->scale->text().toDouble();
+    p_test->for_scale(x);
+    ui->widget->update();
 }
 

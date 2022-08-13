@@ -164,60 +164,98 @@ int help_funk_vertexes_polygons(char *lineptr, data_t *some_data,
   return error;
 }
 void move_obj(data_t *some_data, double x, double y, double z) {
-    printf("%f\n", x);
-    printf("%f\n", y);
-    printf("%f\n", z);
+//    printf("%f\n", x);
+//    printf("%f\n", y);
+//    printf("%f\n", z);
     for (int i = 0; i < some_data->matrix.rows; i++) {
         some_data->matrix.matrix[i][0] += x;
         some_data->matrix.matrix[i][1] += y;
         some_data->matrix.matrix[i][2] += z;
     }
-    for (int i = 0; i < some_data->matrix.rows; i++) {
-    printf("%f\n", some_data->matrix.matrix[i][0]);
-    printf("%f\n", some_data->matrix.matrix[i][1]);
-    printf("%f\n", some_data->matrix.matrix[i][2]);
-    }
 }
 
-void rotation_by_ox(data_t *some_data, double angle) {
-    for (int i = 0; i < some_data->matrix.rows; i++) {
-        double temp_y = some_data->matrix.matrix[i][1];
-        double temp_z = some_data->matrix.matrix[i][2];
-        some_data->matrix.matrix[i][1] = temp_y * cos(angle) + temp_z * sin(angle);
-        some_data->matrix.matrix[i][2] = (-1) * temp_y * sin(angle) + temp_z * cos(angle);
-    }
+void rotation_by_ox(data_t *some_data, double corner) {
+    matrix_t tmp;
+    tmp  = (*some_data).matrix;
+    matrix_t turn_matrix;
+    s21_create_matrix(3, 3, &turn_matrix);
+    turn_matrix.matrix[0][0] = 1;
+    turn_matrix.matrix[0][1] = 0;
+    turn_matrix.matrix[0][2] = 0;
+    turn_matrix.matrix[1][0] = 0;
+    turn_matrix.matrix[1][1] = cos(corner);
+    turn_matrix.matrix[1][2] = sin(corner);
+    turn_matrix.matrix[2][0] = 0;
+    turn_matrix.matrix[2][1] = -sin(corner);
+    turn_matrix.matrix[2][2] = cos(corner);
+    matrix_t result;
+    s21_mult_matrix(&tmp, &turn_matrix, &result);
+    (*some_data).matrix = result;
+    s21_remove_matrix(&turn_matrix);
 }
 
-void rotation_by_oy(data_t *some_data, double angle) {
-    for (int i = 0; i < some_data->matrix.rows; i++) {
-        double temp_x = some_data->matrix.matrix[i][0];
-        double temp_z = some_data->matrix.matrix[i][2];
-        some_data->matrix.matrix[i][1] = temp_x * cos(angle) + temp_z * sin(angle);
-        some_data->matrix.matrix[i][2] = (-1) * temp_x * sin(angle) + temp_z * cos(angle);
-    }
+void rotation_by_oy(data_t *some_data, double corner) {
+    matrix_t tmp;
+    tmp  = (*some_data).matrix;
+    matrix_t turn_matrix;
+    s21_create_matrix(3, 3, &turn_matrix);
+    turn_matrix.matrix[0][0] = cos(corner);
+    turn_matrix.matrix[0][1] = 0;
+    turn_matrix.matrix[0][2] = -sin(corner);;
+    turn_matrix.matrix[1][0] = 0;
+    turn_matrix.matrix[1][1] = 1;
+    turn_matrix.matrix[1][2] = 0;
+    turn_matrix.matrix[2][0] = sin(corner);
+    turn_matrix.matrix[2][1] = 0;
+    turn_matrix.matrix[2][2] = cos(corner);
+    matrix_t result;
+    s21_mult_matrix(&tmp, &turn_matrix, &result);
+    (*some_data).matrix = result;
+    s21_remove_matrix(&turn_matrix);
 }
-
-void rotation_by_oz(data_t *some_data, double angle) {
-    for (int i = 0; i < some_data->matrix.rows; i++) {
-        double temp_x = some_data->matrix.matrix[i][0];
-        double temp_y = some_data->matrix.matrix[i][1];
-        some_data->matrix.matrix[i][1] = temp_x * cos(angle) - temp_y * sin(angle);
-        some_data->matrix.matrix[i][2] = (-1) * temp_x * sin(angle) + temp_y * cos(angle);
-    }
+void rotation_by_oz(data_t *some_data, double corner) {
+    matrix_t tmp;
+    tmp  = (*some_data).matrix;
+    matrix_t turn_matrix;
+    s21_create_matrix(3, 3, &turn_matrix);
+    turn_matrix.matrix[0][0] = cos(corner);
+    turn_matrix.matrix[0][1] = sin(corner);
+    turn_matrix.matrix[0][2] = 0;
+    turn_matrix.matrix[1][0] = -sin(corner);
+    turn_matrix.matrix[1][1] = cos(corner);
+    turn_matrix.matrix[1][2] = 0;
+    turn_matrix.matrix[2][0] = 0;
+    turn_matrix.matrix[2][1] = 0;
+    turn_matrix.matrix[2][2] = 1;
+    matrix_t result;
+    s21_mult_matrix(&tmp, &turn_matrix, &result);
+    (*some_data).matrix = result;
+    s21_remove_matrix(&turn_matrix);
 }
 
 void scale_obj(data_t *some_data, double scale) {
-    s21_mult_number(some_data->matrix.matrix, scale, some_data->matrix.matrix);
+    matrix_t temp, result;
+       temp = (*some_data).matrix;
+       s21_mult_number(&temp, scale, &result);
+       (*some_data).matrix = result;
 }
-//void change_coor(data_t *some_data, double x, double y, double z) {
-//    double x_1 = 1;
-//    double y_1 = 1;
-//    double z_1 = 1;
-//    x_1 = x;
-//    y_1 = y;
-//    z_1 = z;
-//    move_obj(some_data, x_1, y_1, z_1);
-//}
+
+void get_max_min_frustum(double *max, double *min, data_t obj) {
+    double min_vertex = obj.matrix.matrix[0][0];
+    double max_vertex = obj.matrix.matrix[0][1];
+    for (int i = 0; i < obj.count_of_vertex; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (min_vertex > obj.matrix.matrix[i][j]) {
+                min_vertex = obj.matrix.matrix[i][j];
+            }
+            if (max_vertex < obj.matrix.matrix[i][j]) {
+                max_vertex = obj.matrix.matrix[i][j];
+            }
+        }
+    }
+    *max = max_vertex;
+    *min = min_vertex;
+}
 
 
 
