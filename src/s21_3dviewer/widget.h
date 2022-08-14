@@ -8,7 +8,7 @@
 #include <QGuiApplication>
 #include <QTimer>
 #include <QMouseEvent>
-
+#include <glu.h>
 extern "C" {
 #include "../backend/s21_parsing_object.h"
 }
@@ -25,6 +25,7 @@ public:
     ~Widget();
     double xRot, yRot, zRot;
     QPoint mPos;
+    QString path_to_file;
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     double r = 0, g = 0, b = 0;

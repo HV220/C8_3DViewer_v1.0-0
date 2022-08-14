@@ -24,29 +24,21 @@ void Widget::initializeGL() {
 }
 
 void Widget::resizeGL(int w, int h) {
-            glViewport(0,0,w,h);
-            glMatrixMode(GL_PROJECTION);
-            glLoadIdentity();
-
-            int min = -484;
-            int max =  338;
-               if (qFabs(min) > max) {
-                       max = qFabs(min);
-                   } else if (max > qFabs(min)) {
-                       min = -max;
-                   }
-                   min*=1.2;
-                   max*=1.2;
-            glOrtho(min,max,min,max,min,max);
-            glFrustum(min,max,min,max,min,max);
-
+    glViewport(0,0,w,h);
+         glMatrixMode(GL_PROJECTION);
+         glLoadIdentity();
+         double coef = 1.2;
+         min_x*=coef;
+         max_x*=coef;
+         min_y*=coef;
+         max_y*=coef;
+         min_z*=coef;
+         max_z*=coef;
+         gluPerspective(60, (max_x-min_x)/(max_y-min_y), 1, 800);
 }
 
 
 void Widget::paintGL() {
-
-
-       glTranslatef(0,0,-4);
 
        vertex = (double *)calloc(some_data.count_of_vertex*3, sizeof(double));
        facets = (unsigned int *)calloc(some_data.count_of_polygons*10, sizeof(unsigned int));
@@ -80,7 +72,7 @@ void Widget::paintGL() {
         glRotatef(yRot, 0.0, 1.0, 0.0);
 
 
-        glTranslatef(0, 0, -4);
+        glTranslatef(0,min_y,min_z);
         if (line_type) {
             glLineStipple(1, 0x00F0);
             glEnable(GL_LINE_STIPPLE);
@@ -169,7 +161,8 @@ void Widget::errors(int error) {
 
 void Widget:: parcing_3d_files()
 {
-    QString path_to_file = QFileDialog::getOpenFileName(NULL, "Open", "/Users/", "*.obj");
+    path_to_file = QFileDialog::getOpenFileName(NULL, "Open", "/Users/", "*.obj");
+
     QByteArray tmp = path_to_file.toLocal8Bit();
     char* name_of_file = tmp.data();
 
@@ -210,29 +203,21 @@ void Widget:: check_vertex_min_max(double check, int choise) {
 
     switch (choise) {
     case 1:
-               if (qFabs(min_x) > check) {
-                       max_x = qFabs(check);
-                   } else if (check > qFabs(min_x)) {
-                       min_x = -check;
-                   }
+        if(std::less<double>{}(max_x, check)) max_x = check;
+        if(std::greater<double>{}(min_x, check)) min_x = check;
         break;
     case 2:
-        if (qFabs(min_y) > check) {
-                max_y = qFabs(check);
-            } else if (check > qFabs(min_y)) {
-                min_y = -check;
-            }
+        if(std::less<double>{}(max_y, check)) max_y = check;
+        if(std::greater<double>{}(min_y, check)) min_y = check;
         break;
     case 3:
-        if (qFabs(min_z) > check) {
-                max_y = qFabs(check);
-            } else if (check > qFabs(min_z)) {
-                min_z = -check;
-            }
+        if(std::less<double>{}(max_z, check)) max_z = check;
+        if(std::greater<double>{}(min_z, check)) min_z = check;
         break;
     }
-
 }
+
+
 
 void Widget::for_move(double x, double y, double z)
 {
@@ -314,4 +299,4 @@ void Widget::change_vertex_type(double x)
    // qDebug()<<x;
 }
 
-void Widget::information_
+

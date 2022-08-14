@@ -446,7 +446,7 @@
       <x>0</x>
       <y>0</y>
       <width>1091</width>
-      <height>761</height>
+      <height>831</height>
      </rect>
     </property>
    </widget>
@@ -636,19 +636,6 @@
     </property>
     <property name="text">
      <string>None</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="inf_for_obj">
-    <property name="geometry">
-     <rect>
-      <x>7</x>
-      <y>915</y>
-      <width>711</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
     </property>
    </widget>
   </widget>

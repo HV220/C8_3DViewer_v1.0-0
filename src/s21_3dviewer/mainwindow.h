@@ -55,6 +55,7 @@ private slots:
 
     void on_vertextype_none_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 };

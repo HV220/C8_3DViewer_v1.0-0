@@ -136,3 +136,13 @@ void MainWindow::on_vertextype_none_clicked()
     //ui->widget->update();
 }
 
+
+
+
+//void MainWindow::on_path_console_linkActivated(QString &link)
+//{
+//    link = p_test->path_to_file;
+//    ui->path_console->setText(p_test->path_to_file);
+//    ui->widget->update();
+//}
+
