@@ -35,6 +35,26 @@ private slots:
 
     void on_change_scale_clicked();
 
+    void on_background_white_clicked();
+
+    void on_change_vertex_color_clicked();
+
+    void on_change_vertex_size_clicked();
+
+    void on_change_edge_color_clicked();
+
+    void on_change_edge_size_clicked();
+
+    void on_stipple_on_clicked();
+
+    void on_stipple_off_clicked();
+
+    void on_vertextype_round_clicked();
+
+    void on_vertextype_square_clicked();
+
+    void on_vertextype_none_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

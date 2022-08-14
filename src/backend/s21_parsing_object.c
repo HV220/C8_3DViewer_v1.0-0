@@ -259,4 +259,3 @@ void get_max_min_frustum(double *max, double *min, data_t obj) {
 
 
 
-

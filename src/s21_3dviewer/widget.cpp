@@ -24,7 +24,7 @@ void Widget::initializeGL() {
 }
 
 void Widget::resizeGL(int w, int h) {
-    glViewport(0,0,w,h);
+            glViewport(0,0,w,h);
             glMatrixMode(GL_PROJECTION);
             glLoadIdentity();
 
@@ -72,8 +72,8 @@ void Widget::paintGL() {
                 facets[k] = some_data.polygons[i].vertexes[j];
            }
        }
-        glClearColor(0,0,0,0);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(r1,g1,b1,0);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glRotatef(xRot, 1.0, 0.0, 0.0);
@@ -81,19 +81,51 @@ void Widget::paintGL() {
 
 
         glTranslatef(0, 0, -4);
+        if (line_type) {
+            glLineStipple(1, 0x00F0);
+            glEnable(GL_LINE_STIPPLE);
+        } else {
+            glDisable(GL_LINE_STIPPLE);
+        }
+         glPointSize(width);
+        for (int i = 0; i < some_data.count_of_vertex + 1; i++) {
+                if (type_point == 1)
+                {
+                    glDisable(GL_POINT_SMOOTH);
+                    glDisable(GL_POINT);
+                } else if (type_point == 2) {
+        //            glPointSize(point_size);
+                    glEnable(GL_POINT_SMOOTH);
+                    glBegin(GL_POINT_SMOOTH);
+                    glEnd();
+//                   / glDisable(GL_POINT_SMOOTH);
+                     //qDebug()<<type_point;
+                } else if (type_point == 3) {
+        //            glPointSize(point_size);
+                    glDisable(GL_POINT_SMOOTH);
+                    glBegin(GL_POINT);
+        //            glColor3d(r2, g2, b2);
+        //            glClear(GL_COLOR_BUFFER_BIT);
+        //            glVertex3d(obj.matrix.matrix[i][0], obj.matrix.matrix[i][1], obj.matrix.matrix[i][2]);
+                    glEnd();
+                }
+            }
+        //qDebug()<<type_point;
         glVertexPointer(3, GL_DOUBLE, 0, vertex);
-        glPointSize(10);
-        glColor3d(10,0,0);
+        //glColor3d(r,g,b);
         glEnableClientState(GL_VERTEX_ARRAY);
         glDrawArrays(GL_POINTS, 0, some_data.count_of_vertex);
-        glColor4f(0.1, 0.75, 0.3, 1);
+        glLineWidth(width_edge);
+        glColor4f(r, g, b, 1);
         glDrawElements(GL_POINTS, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
+        glColor4f(r2, g2, b2, 1);
         glDrawElements(GL_LINES, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
 //        glDisable(GL_POINT_SMOOTH);
 //        glDisable(GL_LINE_STIPPLE);
         glDisableClientState(GL_VERTEX_ARRAY);
 //        free(vertex);
 //        free(facets);
+//         qDebug()<<type_point;
 }
 
 void Widget::mousePressEvent(QMouseEvent* mo){
@@ -233,3 +265,53 @@ void Widget::for_scale(double x)
     scale_obj(&some_data, x);
     update();
 }
+
+void Widget::change_background_color(double x, double y, double z)
+{
+    glClearColor(x,y,z,0);
+    update();
+}
+
+void Widget::change_vertex_color(double x, double y, double z)
+{
+    glColor4f(x, y, z, 1);
+    update();
+}
+
+void Widget::change_vertex_size(double x)
+{
+    glPointSize(x);
+    update();
+}
+
+void Widget::change_edge_color(double x, double y, double z)
+{
+    glColor4f(x,y,z, 1);
+    update();
+}
+
+void Widget::change_edge_size(double x)
+{
+    glLineWidth(x);
+    update();
+}
+void Widget::change_line_type_1(double x)
+{
+    line_type = x;
+    update();
+}
+
+void Widget::change_line_type_2(double x)
+{
+    line_type = x;
+    update();
+}
+
+void Widget::change_vertex_type(double x)
+{
+    type_point = x;
+    update();
+   // qDebug()<<x;
+}
+
+void Widget::information_

@@ -6,40 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1754</width>
+    <width>1600</width>
     <height>997</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1600</width>
+    <height>997</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1600</width>
+    <height>997</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="vertexsize_hi">
-    <property name="geometry">
-     <rect>
-      <x>1420</x>
-      <y>160</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Hi</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="vertexcolor_red">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>90</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Red</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
@@ -53,37 +45,11 @@
      <string>--VertexType--</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="vertexcolor_green">
-    <property name="geometry">
-     <rect>
-      <x>1260</x>
-      <y>90</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Green</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="edgecolor_green">
-    <property name="geometry">
-     <rect>
-      <x>1260</x>
-      <y>310</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Green</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="perspective">
     <property name="geometry">
      <rect>
       <x>1090</x>
-      <y>780</y>
+      <y>750</y>
       <width>231</width>
       <height>51</height>
      </rect>
@@ -105,24 +71,11 @@
      <string>--VertexColor--</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="edgecolor_blue">
-    <property name="geometry">
-     <rect>
-      <x>1420</x>
-      <y>310</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Blue</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="stipple_off">
     <property name="geometry">
      <rect>
       <x>1320</x>
-      <y>820</y>
+      <y>790</y>
       <width>231</width>
       <height>51</height>
      </rect>
@@ -131,43 +84,17 @@
      <string>Stipple OFF</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="vertexsize_lo">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>160</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Lo</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="vertextype_square">
     <property name="geometry">
      <rect>
       <x>1090</x>
       <y>240</y>
-      <width>231</width>
+      <width>151</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string>Square</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="background_grey">
-    <property name="geometry">
-     <rect>
-      <x>1260</x>
-      <y>450</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Grey</string>
     </property>
    </widget>
    <widget class="QPushButton" name="background_white">
@@ -180,72 +107,20 @@
      </rect>
     </property>
     <property name="text">
-     <string>White</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="crazy_color">
-    <property name="geometry">
-     <rect>
-      <x>1320</x>
-      <y>740</y>
-      <width>231</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Crazy Color</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="standart_color">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>740</y>
-      <width>231</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Standart Color</string>
+     <string>Change</string>
     </property>
    </widget>
    <widget class="QPushButton" name="stipple_on">
     <property name="geometry">
      <rect>
       <x>1090</x>
-      <y>820</y>
+      <y>790</y>
       <width>231</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string>Stipple ON</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="vertexcolor_blue">
-    <property name="geometry">
-     <rect>
-      <x>1420</x>
-      <y>90</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Blue</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="background_black">
-    <property name="geometry">
-     <rect>
-      <x>1420</x>
-      <y>450</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Black</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -259,32 +134,6 @@
     </property>
     <property name="text">
      <string>--Rotation--</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="vertexsize_mid">
-    <property name="geometry">
-     <rect>
-      <x>1260</x>
-      <y>160</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Mid</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="edgecolor_hi">
-    <property name="geometry">
-     <rect>
-      <x>1420</x>
-      <y>380</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Hi</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -303,9 +152,9 @@
    <widget class="QPushButton" name="vertextype_round">
     <property name="geometry">
      <rect>
-      <x>1320</x>
+      <x>1240</x>
       <y>240</y>
-      <width>231</width>
+      <width>141</width>
       <height>51</height>
      </rect>
     </property>
@@ -317,7 +166,7 @@
     <property name="geometry">
      <rect>
       <x>1360</x>
-      <y>660</y>
+      <y>670</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -339,24 +188,11 @@
      <string>Screenshot</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="edgecol_red">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>310</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Red</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="orthographic">
     <property name="geometry">
      <rect>
       <x>1320</x>
-      <y>780</y>
+      <y>750</y>
       <width>231</width>
       <height>51</height>
      </rect>
@@ -394,40 +230,14 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>1280</x>
-      <y>420</y>
+      <x>1340</x>
+      <y>430</y>
       <width>111</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>--Background--</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="edgesize_lo">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>380</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Lo</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="edgesize_mid">
-    <property name="geometry">
-     <rect>
-      <x>1260</x>
-      <y>380</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Mid</string>
     </property>
    </widget>
    <widget class="QPushButton" name="download_obj">
@@ -653,13 +463,201 @@
      <string>Change</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="back_color_1">
+    <property name="geometry">
+     <rect>
+      <x>1250</x>
+      <y>460</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="back_color_2">
+    <property name="geometry">
+     <rect>
+      <x>1350</x>
+      <y>460</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="back_color_3">
+    <property name="geometry">
+     <rect>
+      <x>1450</x>
+      <y>460</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="vertex_color_1">
+    <property name="geometry">
+     <rect>
+      <x>1250</x>
+      <y>90</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="vertex_color_2">
+    <property name="geometry">
+     <rect>
+      <x>1350</x>
+      <y>90</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="vertex_color_3">
+    <property name="geometry">
+     <rect>
+      <x>1450</x>
+      <y>90</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="change_vertex_color">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>80</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edge_color_1">
+    <property name="geometry">
+     <rect>
+      <x>1250</x>
+      <y>320</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="change_edge_color">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>310</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edge_color_2">
+    <property name="geometry">
+     <rect>
+      <x>1350</x>
+      <y>320</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edge_color_3">
+    <property name="geometry">
+     <rect>
+      <x>1450</x>
+      <y>320</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="vertex_size">
+    <property name="geometry">
+     <rect>
+      <x>1250</x>
+      <y>170</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="change_vertex_size">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>160</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="change_edge_size">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>380</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edge_size">
+    <property name="geometry">
+     <rect>
+      <x>1250</x>
+      <y>390</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="vertextype_none">
+    <property name="geometry">
+     <rect>
+      <x>1380</x>
+      <y>240</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>None</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="inf_for_obj">
+    <property name="geometry">
+     <rect>
+      <x>7</x>
+      <y>915</y>
+      <width>711</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1754</width>
+     <width>1600</width>
      <height>24</height>
     </rect>
    </property>
