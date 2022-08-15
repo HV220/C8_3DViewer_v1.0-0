@@ -65,6 +65,12 @@ private slots:
 
     void on_stop_image_clicked();
 
+    void information_of_file();
+
+    void on_perspective_clicked();
+
+    void on_orthographic_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

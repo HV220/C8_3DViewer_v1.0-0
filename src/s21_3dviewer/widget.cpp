@@ -20,31 +20,17 @@ Widget::~Widget()
 }
 
 void Widget::initializeGL() {
-   // glEnable(GL_DEPTH_TEST);
 }
 
 void Widget::resizeGL(int w, int h) {
     glViewport(0,0,w,h);
-               glMatrixMode(GL_PROJECTION);
-               glLoadIdentity();
-
-               int min = -484;
-               int max =  338;
-                  if (qFabs(min) > max) {
-                          max = qFabs(min);
-                      } else if (max > qFabs(min)) {
-                          min = -max;
-                      }
-                      min*=1.2;
-                      max*=1.2;
-               glOrtho(min,max,min,max,min,max);
-               glFrustum(min,max,min,max,min,max);
-
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    if(!change_geometry){ortho_geometry();}
+    else {perspective_geometry();}
 }
 
-
 void Widget::paintGL() {
-
        vertex = (double *)calloc(some_data.count_of_vertex*3, sizeof(double));
        facets = (unsigned int *)calloc(some_data.count_of_polygons*10, sizeof(unsigned int));
        for (int i = 0, k = 0; i < some_data.matrix.rows; i++) {
@@ -69,15 +55,14 @@ void Widget::paintGL() {
                 facets[k] = some_data.polygons[i].vertexes[j];
            }
        }
+
         glClearColor(r1,g1,b1,0);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glRotatef(xRot, 1.0, 0.0, 0.0);
         glRotatef(yRot, 0.0, 1.0, 0.0);
-
-
-       glTranslatef(0,0,-4);
+        if(change_geometry) glTranslatef(0,min_y,min_z);
         if (line_type) {
             glLineStipple(1, 0x00F0);
             glEnable(GL_LINE_STIPPLE);
@@ -91,25 +76,16 @@ void Widget::paintGL() {
                     glDisable(GL_POINT_SMOOTH);
                     glDisable(GL_POINT);
                 } else if (type_point == 2) {
-        //            glPointSize(point_size);
                     glEnable(GL_POINT_SMOOTH);
                     glBegin(GL_POINT_SMOOTH);
                     glEnd();
-//                   / glDisable(GL_POINT_SMOOTH);
-                     //qDebug()<<type_point;
                 } else if (type_point == 3) {
-        //            glPointSize(point_size);
                     glDisable(GL_POINT_SMOOTH);
                     glBegin(GL_POINT);
-        //            glColor3d(r2, g2, b2);
-        //            glClear(GL_COLOR_BUFFER_BIT);
-        //            glVertex3d(obj.matrix.matrix[i][0], obj.matrix.matrix[i][1], obj.matrix.matrix[i][2]);
                     glEnd();
                 }
             }
-        //qDebug()<<type_point;
         glVertexPointer(3, GL_DOUBLE, 0, vertex);
-        //glColor3d(r,g,b);
         glEnableClientState(GL_VERTEX_ARRAY);
         glDrawArrays(GL_POINTS, 0, some_data.count_of_vertex);
         glLineWidth(width_edge);
@@ -117,12 +93,8 @@ void Widget::paintGL() {
         glDrawElements(GL_POINTS, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
         glColor4f(r2, g2, b2, 1);
         glDrawElements(GL_LINES, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
-//        glDisable(GL_POINT_SMOOTH);
-//        glDisable(GL_LINE_STIPPLE);
         glDisableClientState(GL_VERTEX_ARRAY);
-//        free(vertex);
-//        free(facets);
-//         qDebug()<<type_point;
+        resizeGL(600,400);
 }
 
 void Widget::mousePressEvent(QMouseEvent* mo){
@@ -135,9 +107,9 @@ void Widget::mouseMoveEvent(QMouseEvent* mo){
 }
 
 int Widget::validation_of_files(char* name_file) {
-    if(count_vertexes_polygons(name_file, &some_data)) { errors(3); return 1; }
-    if(create_matrix_obj(name_file, &some_data)) { errors(4); return 1; }
-    if(note_vertexes_polygons(name_file, &some_data)) { errors(5); return 1; }
+    if(count_vertexes_polygons(name_file, &some_data) && !path_to_file.isNull()) { errors(3); return 1; }
+    if(create_matrix_obj(name_file, &some_data) && !path_to_file.isNull()) { errors(4); return 1; }
+    if(note_vertexes_polygons(name_file, &some_data) && !path_to_file.isNull()) { errors(5); return 1; }
     return 0;
 }
 
@@ -173,34 +145,6 @@ void Widget:: parcing_3d_files()
     if (!name_of_file) { errors(2); return; }
     if  (validation_of_files(name_of_file)) return;
 
-//       glTranslatef(0,0,-4);
-
-//       vertex = (double *)calloc(some_data.count_of_vertex*3, sizeof(double));
-//       facets = (unsigned int *)calloc(some_data.count_of_polygons*10, sizeof(unsigned int));
-//       for (int i = 0, k = 0; i < some_data.matrix.rows; i++) {
-//           for (int j = 0; j < some_data.matrix.columns; j++, k++) {
-//               vertex[k] = some_data.matrix.matrix[i][j];
-//               if(k == 0)
-//               {
-//               min_x = vertex[k]; max_x = vertex[k];
-//               min_y = vertex[k]; max_y = vertex[k];
-//               min_z = vertex[k]; max_z = vertex[k];
-//               }
-//               else
-//               {
-//               if(k % 2 == 0) check_vertex_min_max(vertex[k], 2);
-//               else if(k % 3 == 0) check_vertex_min_max(vertex[k], 3);
-//               else check_vertex_min_max(vertex[k], 1);
-//               }
-//           }
-//       }
-//       for (int i = 0, k = 0;i < some_data.count_of_polygons ; i++) {
-//           for (int j = 0; j < some_data.polygons[i].numbers_of_vertexes_in_facets*2; j++, k++) {
-//                facets[k] = some_data.polygons[i].vertexes[j];
-//           }
-//       }
-//       free(vertex);
-//       free(facets);
 }
 
 void Widget:: check_vertex_min_max(double check, int choise) {
@@ -221,23 +165,9 @@ void Widget:: check_vertex_min_max(double check, int choise) {
     }
 }
 
-
-
 void Widget::for_move(double x, double y, double z)
 {
-//    double x_1 = 1;
-//    double y_1 = 1;
-//    double z_1 = 1;
-//    x_1 = x;
-//    y_1 = y;
-//    z_1 = z;
-//    qDebug() << x;
-//    qDebug() << y;
-//    qDebug() << z;
     move_obj(&some_data, x, y, z);
-//    for (int i = 0; i < some_data.count_of_vertex*3; i++) {
-//    qDebug() << vertex[i];
-//    }
     update();
 }
 
@@ -300,7 +230,36 @@ void Widget::change_vertex_type(double x)
 {
     type_point = x;
     update();
-   // qDebug()<<x;
 }
 
+void Widget::ortho_geometry(){
+    double min = 0.0;
+    double max = 0.0;
+    get_max_min_frustum(&max, &min, some_data);
 
+    double coef = 2.0;
+    min_x*=coef;
+    max_x*=coef;
+    min_y*=coef;
+    max_y*=coef;
+    min_z*=coef;
+    max_z*=coef;
+    max *=coef;
+    min *=coef;
+    glOrtho(min, max, min, max, min_z, max_z+100);
+}
+
+void Widget::perspective_geometry() {
+            double coef = 1.2;
+             min_x*=coef;
+             max_x*=coef;
+             min_y*=coef;
+             max_y*=coef;
+             min_z*=coef;
+             max_z*=coef;
+             gluPerspective(60, (max_x-min_x)/(max_y-min_y), 1, 800);
+}
+
+void Widget::change_geo(int change) {
+    if (change) change_geometry = 1;
+}

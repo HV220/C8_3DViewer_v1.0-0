@@ -20,136 +20,157 @@ void MainWindow::on_download_obj_clicked()
     p_test = new Widget(this);
     p_test->show();
     create_screen();
-    qDebug()<<flag;
+    information_of_file();
+    if(!p_test->path_to_file.isNull())
+    ui->download_obj->setCheckable(true);
+    else p_test->errors(1);
 }
-
-
-
-
 
 void MainWindow::on_change_move_clicked()
 {
+    if (ui->download_obj->isCheckable()) {
     double x = ui->move_x->text().toDouble();
     double y = ui->move_y->text().toDouble();
     double z = ui->move_z->text().toDouble();
     p_test->for_move(x,y,z);
     p_test->update();
     create_screen();
-}
 
+    }
+}
 
 void MainWindow::on_change_rot_clicked()
 {
+  if (ui->download_obj->isCheckable()) {
     double x = ui->rot_x->text().toDouble();
     double y = ui->rot_y->text().toDouble();
     double z = ui->rot_z->text().toDouble();
     p_test->for_rot(x, y, z);
     p_test->update();
     create_screen();
+  }
 }
-
 
 void MainWindow::on_change_scale_clicked()
 {
+   if (ui->download_obj->isCheckable()) {
     double x = ui->scale->text().toDouble();
     p_test->for_scale(x);
     p_test->update();
     create_screen();
+    }
 }
-
 
 void MainWindow::on_background_white_clicked()
 {
+    if (ui->download_obj->isCheckable()) {
     p_test->r1 = ui->back_color_1->text().toDouble();
     p_test->g1 = ui->back_color_2->text().toDouble();
     p_test->b1 = ui->back_color_3->text().toDouble();
     p_test->change_background_color(p_test->r1, p_test->g1, p_test->b1);
     p_test->update();
     create_screen();
+    }
 }
-
 
 void MainWindow::on_change_vertex_color_clicked()
 {
+   if (ui->download_obj->isCheckable()) {
     p_test->r = ui->vertex_color_1->text().toDouble();
     p_test->g = ui->vertex_color_2->text().toDouble();
     p_test->b = ui->vertex_color_3->text().toDouble();
     p_test->change_vertex_color(p_test->r, p_test->g, p_test->b);
     p_test->update();
     create_screen();
+    }
 }
 
 void MainWindow::on_change_vertex_size_clicked()
 {
+   if (ui->download_obj->isCheckable()) {
     p_test->width = ui->vertex_size->text().toDouble();
     p_test->change_vertex_size(p_test->width);
     p_test->update();
     create_screen();
+    }
 }
 
 void MainWindow::on_change_edge_color_clicked()
 {
+   if (ui->download_obj->isCheckable()) {
     p_test->r2 = ui->edge_color_1->text().toDouble();
     p_test->g2 = ui->edge_color_2->text().toDouble();
     p_test->b2 = ui->edge_color_3->text().toDouble();
     p_test->change_edge_color(p_test->r2, p_test->g2, p_test->b2);
     p_test->update();
     create_screen();
+    }
 }
 
 void MainWindow::on_change_edge_size_clicked()
 {
+   if (ui->download_obj->isCheckable()) {
     p_test->width_edge = ui->vertex_size->text().toDouble();
     p_test->change_edge_size(p_test->width_edge);
     p_test->update();
     create_screen();
+    }
 }
 
 void MainWindow::on_stipple_on_clicked()
 {
+    if (ui->download_obj->isCheckable()) {
     p_test->line_type = 1;
     p_test->change_line_type_1(p_test->line_type);
     p_test->update();
     create_screen();
+    }
 }
 
 void MainWindow::on_stipple_off_clicked()
 {
+    if (ui->download_obj->isCheckable()) {
     p_test->line_type = 0;
     p_test->change_line_type_2(p_test->line_type);
     p_test->update();
     create_screen();
+    }
 }
 
 void MainWindow::on_vertextype_round_clicked()
 {
+   if (ui->download_obj->isCheckable()) {
     p_test->type_point = 2;
     p_test->change_vertex_type(p_test->type_point);
     p_test->update();
     create_screen();
+    }
 }
 
 void MainWindow::on_vertextype_square_clicked()
 {
+    if (ui->download_obj->isCheckable()) {
     p_test->type_point = 3;
     p_test->change_vertex_type(p_test->type_point);
     p_test->update();
     create_screen();
+    }
 }
 
 void MainWindow::on_vertextype_none_clicked()
 {
+   if (ui->download_obj->isCheckable()) {
     p_test->type_point = 1;
     p_test->change_vertex_type(p_test->type_point);
     p_test->update();
     create_screen();
+   }
 }
 
 void MainWindow::on_screenshot_clicked()
 {
     QString file = QFileDialog::getSaveFileName(this, "Save as...", "name", "BMP (*.bmp);; JPEG (*.jpeg)");
     p_test->grab().save(file);
-    qDebug()<<flag;
 }
 
 void MainWindow::create_screen()
@@ -159,22 +180,10 @@ void MainWindow::create_screen()
     }
 }
 
-// void MainWindow::on_label_with_inf_linkActivated(const QString &link)
-//{
-//    QString qs = QString::fromLocal8Bit(link.c_str());
-//    int vertex_inf = p_test->some_data.count_of_vertex;
-//    int polygon_inf = p_test->some_data.count_of_polygons;
-//    QString str_vertex =  QString::number(vertex_inf, 'g', 15);
-//    QString str_polygons =  QString::number(polygon_inf, 'g', 15);
-//    ui->label_of_inf->setText(p_test->path_to_file + "\nКоличество вершин: " + str_vertex + "\nКоличество полигонов: " + str_polygons);
-//}
-
-
 void MainWindow::on_start_image_clicked()
 {
     flag = 1;
 }
-
 
 void MainWindow::on_stop_image_clicked()
 {
@@ -201,4 +210,25 @@ void MainWindow::on_stop_image_clicked()
             gif.save(fileName);
 }
 
+void MainWindow::information_of_file() {
+    if (ui->download_obj->isCheckable()) {
+    int vertex_inf = p_test->some_data.count_of_vertex;
+    int polygon_inf = p_test->some_data.count_of_polygons;
+    QString str_vertex =  QString::number(vertex_inf, 'g', 15);
+    QString str_polygons =  QString::number(polygon_inf, 'g', 15);
+    ui->label_of_inf->setText(p_test->path_to_file + "\nКоличество вершин: " + str_vertex + "\nКоличество полигонов: " + str_polygons);
+    }
+}
+
+
+void MainWindow::on_perspective_clicked()
+{
+    if (ui->download_obj->isCheckable()) p_test->change_geometry = 1;
+}
+
+
+void MainWindow::on_orthographic_clicked()
+{
+     if (ui->download_obj->isCheckable()) p_test->change_geometry = 0;
+}
 
