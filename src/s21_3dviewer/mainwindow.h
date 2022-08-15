@@ -9,7 +9,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QSize>
-#include "../../QtGifImage-master/src/gifimage/qgifimage.h"
+#include "../QtGifImage-master/src/gifimage/qgifimage.h"
 extern "C" {
 #include "../backend/s21_parsing_object.h"
 }
@@ -24,6 +24,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    int flag = 0;
     Widget *p_test;
     QVector<QImage> mas_image;
 
