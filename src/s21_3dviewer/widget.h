@@ -35,9 +35,9 @@ public:
     QString path_to_file;
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
-    double r = 0, g = 0, b = 0;
+    double r, g, b;
     double r1 = 255, g1 = 255, b1 = 255;
-    double r2 = 0, g2 = 0, b2 = 0;
+    double r2, g2, b2;
     double width = 5, width_edge = 2;
     int min_x, max_x,min_y, max_y, min_z, max_z;
     int line_type = 0;

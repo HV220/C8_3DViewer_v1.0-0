@@ -63,6 +63,8 @@ private slots:
 
     void on_stop_image_clicked();
 
+    void information_of_file();
+
 private:
     Ui::MainWindow *ui;
 };

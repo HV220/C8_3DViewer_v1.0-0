@@ -20,7 +20,8 @@ void MainWindow::on_download_obj_clicked()
     p_test = new Widget(this);
     p_test->show();
     create_screen();
-    qDebug()<<p_test->flag;
+    information_of_file();
+    //qDebug()<<p_test->flag;
 }
 
 
@@ -149,7 +150,7 @@ void MainWindow::on_screenshot_clicked()
 {
     QString file = QFileDialog::getSaveFileName(this, "Save as...", "name", "BMP (*.bmp);; JPEG (*.jpeg)");
     p_test->grab().save(file);
-    qDebug()<<p_test->flag;
+    //qDebug()<<p_test->flag;
 }
 
 void MainWindow::create_screen()
@@ -160,16 +161,14 @@ void MainWindow::create_screen()
     }
 }
 
-// void MainWindow::on_label_with_inf_linkActivated(const QString &link)
-//{
-//    QString qs = QString::fromLocal8Bit(link.c_str());
-//    int vertex_inf = p_test->some_data.count_of_vertex;
-//    int polygon_inf = p_test->some_data.count_of_polygons;
-//    QString str_vertex =  QString::number(vertex_inf, 'g', 15);
-//    QString str_polygons =  QString::number(polygon_inf, 'g', 15);
-//    ui->label_of_inf->setText(p_test->path_to_file + "\nКоличество вершин: " + str_vertex + "\nКоличество полигонов: " + str_polygons);
-//}
-
+void MainWindow::information_of_file()
+{
+        int vertex_inf = p_test->some_data.count_of_vertex;
+        int polygon_inf = p_test->some_data.count_of_polygons;
+        QString str_vertex =  QString::number(vertex_inf, 'g', 15);
+        QString str_polygons =  QString::number(polygon_inf, 'g', 15);
+        ui->label_of_inf->setText(p_test->path_to_file + "\nКоличество вершин: " + str_vertex + "\nКоличество полигонов: " + str_polygons);
+}
 
 void MainWindow::on_start_image_clicked()
 {
