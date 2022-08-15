@@ -24,7 +24,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    int flag = 0;
     Widget *p_test;
     QVector<QImage> mas_image;
 

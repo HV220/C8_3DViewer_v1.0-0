@@ -19,7 +19,7 @@ void MainWindow::on_download_obj_clicked()
 {
     p_test = new Widget(this);
     p_test->show();
-    //create_screen();
+    create_screen();
 }
 
 
@@ -146,15 +146,14 @@ void MainWindow::on_vertextype_none_clicked()
 
 void MainWindow::on_screenshot_clicked()
 {
-//    QString file = QFileDialog::getSaveFileName(this, "Save as...", "name", "BMP (*.bmp);; JPEG (*.jpeg)");
-//    p_test->grab().save(file);
     QString file = QFileDialog::getSaveFileName(this, "Save as...", "name", "BMP (*.bmp);; JPEG (*.jpeg)");
     p_test->grab().save(file);
+    qDebug()<<p_test->flag;
 }
 
 void MainWindow::create_screen()
 {
-    if (flag == 1) {
+    if (p_test->flag == 1) {
         mas_image.push_back(p_test->grab().toImage());
     }
 }
@@ -172,13 +171,13 @@ void MainWindow::create_screen()
 
 void MainWindow::on_start_image_clicked()
 {
-    flag = 1;
+    p_test->flag = 1;
 }
 
 
 void MainWindow::on_stop_image_clicked()
 {
-        flag = 0;
+        p_test->flag = 0;
             QString fileName = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("GIF screenshot (*.gif);;GIF screenshot (*.gif)"));
             QGifImage gif(QSize(5000, 5000));
             QVector<QRgb> ctable;

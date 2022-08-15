@@ -43,6 +43,7 @@ public:
     unsigned int *facets;
     data_t some_data;
     QString label_with_inf;
+    int flag = 0;
 
 public slots:
     void for_move(double x, double y, double z);
