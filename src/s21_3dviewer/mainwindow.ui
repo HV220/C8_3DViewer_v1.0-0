@@ -677,6 +677,19 @@
      <string>Stop Image</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_of_inf">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>870</y>
+      <width>1041</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QLabel" name="inf_for_obj">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>760</y>
-     <width>801</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

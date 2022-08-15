@@ -167,7 +167,6 @@ void Widget::errors(int error) {
 void Widget:: parcing_3d_files()
 {
     path_to_file = QFileDialog::getOpenFileName(NULL, "Open", "/Users/", "*.obj");
-
     QByteArray tmp = path_to_file.toLocal8Bit();
     char* name_of_file = tmp.data();
 

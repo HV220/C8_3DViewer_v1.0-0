@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QMouseEvent>
 #include <glu.h>
+#include "../../QtGifImage-master/src/gifimage/qgifimage.h"
 extern "C" {
 #include "../backend/s21_parsing_object.h"
 }
@@ -41,6 +42,7 @@ public:
     double *vertex;
     unsigned int *facets;
     data_t some_data;
+    QString label_with_inf;
 
 public slots:
     void for_move(double x, double y, double z);
