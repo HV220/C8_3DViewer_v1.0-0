@@ -254,6 +254,34 @@ START_TEST(s21_inverse_matrix_test) {
 }
 END_TEST
 
+START_TEST(test_add_func) {
+  char path_of_file[500] =
+      "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/cat.obj";
+  data_t some_data;
+  int error = count_vertexes_polygons(path_of_file, &some_data);
+  if (error == 0) {
+    error = create_matrix_obj(path_of_file, &some_data);
+    if (error == 0) {
+      error = note_vertexes_polygons(path_of_file, &some_data);
+      if (error == 0) {
+        move_obj(&some_data, 1, 1, 1);
+        rotation_by_ox(&some_data, 2);
+        rotation_by_oy(&some_data, 2);
+        rotation_by_oz(&some_data, 2);
+        scale_obj(&some_data, 3);
+        double max, min;
+        get_max_min_frustum(&max, &min, some_data);
+        s21_remove_matrix(&some_data.matrix);
+        for (int i = 0; i < some_data.count_of_polygons; i++)
+          free(some_data.polygons[i].vertexes);
+        free(some_data.polygons);
+      }
+    }
+  }
+  ck_assert_double_eq(error, 0);
+}
+END_TEST
+
 int main() {
   Suite *suite = suite_create("S21_TESTS");
   SRunner *srunner = srunner_create(suite);
@@ -297,6 +325,10 @@ int main() {
   TCase *s21_inverse_matrix_case = tcase_create("s21_inverse_matrix_case");
   suite_add_tcase(suite, s21_inverse_matrix_case);
   tcase_add_test(s21_inverse_matrix_case, s21_inverse_matrix_test);
+
+  TCase *s21_3dviewer_3_case = tcase_create("s21_3dviewer_3_case");
+  suite_add_tcase(suite, s21_3dviewer_3_case);
+  tcase_add_test(s21_3dviewer_3_case, test_add_func);
 
   srunner_run_all(srunner, CK_VERBOSE);
   int number_failed = srunner_ntests_failed(srunner);
