@@ -20,7 +20,7 @@ void MainWindow::on_download_obj_clicked()
     p_test = new Widget(this);
     p_test->show();
     create_screen();
-    qDebug()<<flag;
+    qDebug()<<p_test->flag;
 }
 
 
@@ -149,13 +149,14 @@ void MainWindow::on_screenshot_clicked()
 {
     QString file = QFileDialog::getSaveFileName(this, "Save as...", "name", "BMP (*.bmp);; JPEG (*.jpeg)");
     p_test->grab().save(file);
-    qDebug()<<flag;
+    qDebug()<<p_test->flag;
 }
 
 void MainWindow::create_screen()
 {
-    if (flag == 1) {
-        mas_image.push_back(p_test->grab().toImage());
+    if (p_test->flag == 1) {
+        p_test->mas_image.push_back(p_test->grab().toImage());
+        //qDebug()<<mas_image;
     }
 }
 
@@ -172,15 +173,15 @@ void MainWindow::create_screen()
 
 void MainWindow::on_start_image_clicked()
 {
-    flag = 1;
+    p_test->flag = 1;
 }
 
 
 void MainWindow::on_stop_image_clicked()
 {
-        flag = 0;
+        p_test->flag = 0;
             QString fileName = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("GIF screenshot (*.gif);;GIF screenshot (*.gif)"));
-            QGifImage gif(QSize(5000, 5000));
+            QGifImage gif(QSize(640, 480));
             QVector<QRgb> ctable;
             ctable << qRgb(255, 255, 255)
                    << qRgb(0, 0, 0)
@@ -195,7 +196,7 @@ void MainWindow::on_stop_image_clicked()
             gif.setDefaultTransparentColor(Qt::black);
             gif.setDefaultDelay(100);
 
-            for (QVector<QImage>::Iterator img = mas_image.begin(); img != mas_image.end(); ++img) {
+            for (QVector<QImage>::Iterator img = p_test->mas_image.begin(); img != p_test->mas_image.end(); ++img) {
                 gif.addFrame(*img);
             }
             gif.save(fileName);

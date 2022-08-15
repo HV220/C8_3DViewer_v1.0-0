@@ -9,6 +9,12 @@
 #include <QTimer>
 #include <QMouseEvent>
 #include <glu.h>
+#include <QFileDialog>
+#include <QVector>
+#include <QImage>
+#include <QPainter>
+#include <QPixmap>
+#include <QSize>
 #include "../QtGifImage-master/src/gifimage/qgifimage.h"
 extern "C" {
 #include "../backend/s21_parsing_object.h"
@@ -43,6 +49,8 @@ public:
     unsigned int *facets;
     data_t some_data;
     QString label_with_inf;
+    int flag = 0;
+    QVector<QImage> mas_image;
 
 public slots:
     void for_move(double x, double y, double z);
