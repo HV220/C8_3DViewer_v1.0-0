@@ -25,16 +25,21 @@ void Widget::initializeGL() {
 
 void Widget::resizeGL(int w, int h) {
     glViewport(0,0,w,h);
-         glMatrixMode(GL_PROJECTION);
-         glLoadIdentity();
-         double coef = 1.2;
-         min_x*=coef;
-         max_x*=coef;
-         min_y*=coef;
-         max_y*=coef;
-         min_z*=coef;
-         max_z*=coef;
-         gluPerspective(60, (max_x-min_x)/(max_y-min_y), 1, 800);
+               glMatrixMode(GL_PROJECTION);
+               glLoadIdentity();
+
+               int min = -484;
+               int max =  338;
+                  if (qFabs(min) > max) {
+                          max = qFabs(min);
+                      } else if (max > qFabs(min)) {
+                          min = -max;
+                      }
+                      min*=1.2;
+                      max*=1.2;
+               glOrtho(min,max,min,max,min,max);
+               glFrustum(min,max,min,max,min,max);
+
 }
 
 
@@ -72,7 +77,7 @@ void Widget::paintGL() {
         glRotatef(yRot, 0.0, 1.0, 0.0);
 
 
-        glTranslatef(0,min_y,min_z);
+       glTranslatef(0,0,-4);
         if (line_type) {
             glLineStipple(1, 0x00F0);
             glEnable(GL_LINE_STIPPLE);

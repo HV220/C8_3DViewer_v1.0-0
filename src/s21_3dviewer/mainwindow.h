@@ -9,6 +9,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QSize>
+//#include "../QtGifImage-master/src/gifimage/qgifimage.h"
 extern "C" {
 #include "../backend/s21_parsing_object.h"
 }
@@ -25,6 +26,7 @@ public:
     ~MainWindow();
     int flag;
     Widget *p_test;
+    QVector<QImage> mas_image;
 
 private slots:
     void on_download_obj_clicked();
@@ -55,6 +57,9 @@ private slots:
 
     void on_vertextype_none_clicked();
 
+    void on_screenshot_clicked();
+
+    void create_screen();
 
 private:
     Ui::MainWindow *ui;

@@ -638,6 +638,45 @@
      <string>None</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="screenshot">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>880</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Screenshot</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="start_image">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>880</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start Image</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stop_image">
+    <property name="geometry">
+     <rect>
+      <x>1420</x>
+      <y>880</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop Image</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
