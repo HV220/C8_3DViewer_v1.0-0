@@ -192,6 +192,7 @@ void rotation_by_ox(data_t *some_data, double corner) {
     s21_mult_matrix(&tmp, &turn_matrix, &result);
     (*some_data).matrix = result;
     s21_remove_matrix(&turn_matrix);
+    s21_remove_matrix(&tmp);
 }
 
 void rotation_by_oy(data_t *some_data, double corner) {
@@ -212,6 +213,7 @@ void rotation_by_oy(data_t *some_data, double corner) {
     s21_mult_matrix(&tmp, &turn_matrix, &result);
     (*some_data).matrix = result;
     s21_remove_matrix(&turn_matrix);
+    s21_remove_matrix(&tmp);
 }
 void rotation_by_oz(data_t *some_data, double corner) {
     matrix_t tmp;
@@ -231,6 +233,7 @@ void rotation_by_oz(data_t *some_data, double corner) {
     s21_mult_matrix(&tmp, &turn_matrix, &result);
     (*some_data).matrix = result;
     s21_remove_matrix(&turn_matrix);
+    s21_remove_matrix(&tmp);
 }
 
 void scale_obj(data_t *some_data, double scale) {

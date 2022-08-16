@@ -45,19 +45,6 @@
      <string>--VertexType--</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="perspective">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>750</y>
-      <width>231</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Perspective</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -186,19 +173,6 @@
     </property>
     <property name="text">
      <string>Screenshot</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="orthographic">
-    <property name="geometry">
-     <rect>
-      <x>1320</x>
-      <y>750</y>
-      <width>231</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Orthographic</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">

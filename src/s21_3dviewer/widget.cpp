@@ -23,19 +23,48 @@ void Widget::initializeGL() {
 }
 
 void Widget::resizeGL(int w, int h) {
-    double min = 0.0;
-    double max = 0.0;
-    glViewport(0,0,w/2,h/2);
+    glViewport(0,0,w,h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluLookAt(0.0, 0.0, 0.0, 3.0, 3.0, 3.0, -1.0, 0.0, 0.0);
-    if(!path_to_file.isNull()) get_max_min_frustum(&max, &min, some_data);
-    if(change_geometry) {
-        gluPerspective(60, (max-min)/(max-min), 1, max+50);
-    }
-    else {
-        glOrtho(min, max, min, max, 1, max);
-    }
+
+//     int min = -484;
+//     int max =  338;
+     double min = 0.0;
+     double max = 0.0;
+     get_max_min_frustum(&max, &min, some_data);
+     if (qFabs(min) > max) {
+        max = qFabs(min);
+        } else if (max > qFabs(min)) {
+            min = -max;
+        }
+//     min*=1.2;
+//     max*=1.2;
+//     glOrtho(min,max,min,max,min,max);
+     /* задаем параметры */
+      double coef = 1.2;
+//      min_x*=coef;
+//      max_x*=coef;
+//      min_y*=coef;
+//      max_y*=coef;
+//      min_z*=coef;
+//      max_z*=coef;
+      max *=coef;
+      min *=coef;
+     /* но для корректного отображения, обрати внимание, на функции в paintGL
+     */
+     glOrtho(min,max,min,max,min,max);
+//              glOrtho(min, max, min, max, min_z, max_z+100);
+//              glOrtho(max_x, min_x, max_y, min_y, min_z, max_z);
+     //         glOrtho(min_x, max_x, min_y, max_y, min_z, max_z);
+
+     /* перспектива*/
+//     glTranslatef(0, 0, 10);
+//      double width = max_x - min_x;
+//      double height = max_y - min_y;
+
+//      gluPerspective(60.f, (GLfloat)(width/height), 1, 5000);
+//              glFrustum(min,max,min,max,min,max);
+
 }
 
 void Widget::paintGL() {
@@ -70,8 +99,8 @@ void Widget::paintGL() {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glRotatef(xRot, 1.0, 0.0, 0.0);
-        glRotatef(yRot, 0.0, 0.0, 0.0);
-        if(change_geometry) glTranslatef(0,min_y,min_z);
+        glRotatef(yRot, 0.0, 1.0, 0.0);
+//        if(change_geometry) glTranslatef(0,min_y,min_z);
         if (line_type) {
             glLineStipple(1, 0x00F0);
             glEnable(GL_LINE_STIPPLE);

@@ -189,7 +189,7 @@ void MainWindow::on_stop_image_clicked()
 {
         flag = 0;
             QString fileName = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("GIF screenshot (*.gif);;GIF screenshot (*.gif)"));
-            QGifImage gif(QSize(5000, 5000));
+            QGifImage gif(QSize(640, 480));
             QVector<QRgb> ctable;
             ctable << qRgb(255, 255, 255)
                    << qRgb(0, 0, 0)
@@ -218,24 +218,5 @@ void MainWindow::information_of_file() {
     QString str_polygons =  QString::number(polygon_inf, 'g', 15);
     ui->label_of_inf->setText(p_test->path_to_file + "\nКоличество вершин: " + str_vertex + "\nКоличество полигонов: " + str_polygons);
    }
-}
-
-
-void MainWindow::on_perspective_clicked()
-{
-    if (ui->download_obj->isCheckable()) {
-    p_test->change_geometry = 1;
-    p_test->change_geo();
-    update();
-   }
-}
-
-
-void MainWindow::on_orthographic_clicked()
-{
-     if (ui->download_obj->isCheckable()) {
-     p_test->change_geometry = 0;
-     p_test->change_geo();
-     }
 }
 
