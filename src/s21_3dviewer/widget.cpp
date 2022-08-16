@@ -23,14 +23,23 @@ void Widget::initializeGL() {
 }
 
 void Widget::resizeGL(int w, int h) {
-    glViewport(0,0,w,h);
+    double min = 0.0;
+    double max = 0.0;
+    glViewport(0,0,w/2,h/2);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    if(!change_geometry){ortho_geometry();}
-    else {perspective_geometry();}
+    gluLookAt(0.0, 0.0, 0.0, 3.0, 3.0, 3.0, -1.0, 0.0, 0.0);
+    if(!path_to_file.isNull()) get_max_min_frustum(&max, &min, some_data);
+    if(change_geometry) {
+        gluPerspective(60, (max-min)/(max-min), 1, max+50);
+    }
+    else {
+        glOrtho(min, max, min, max, 1, max);
+    }
 }
 
 void Widget::paintGL() {
+       if(!path_to_file.isNull()){
        vertex = (double *)calloc(some_data.count_of_vertex*3, sizeof(double));
        facets = (unsigned int *)calloc(some_data.count_of_polygons*10, sizeof(unsigned int));
        for (int i = 0, k = 0; i < some_data.matrix.rows; i++) {
@@ -61,7 +70,7 @@ void Widget::paintGL() {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glRotatef(xRot, 1.0, 0.0, 0.0);
-        glRotatef(yRot, 0.0, 1.0, 0.0);
+        glRotatef(yRot, 0.0, 0.0, 0.0);
         if(change_geometry) glTranslatef(0,min_y,min_z);
         if (line_type) {
             glLineStipple(1, 0x00F0);
@@ -94,7 +103,7 @@ void Widget::paintGL() {
         glColor4f(r2, g2, b2, 1);
         glDrawElements(GL_LINES, some_data.count_of_polygons * 6, GL_UNSIGNED_INT, facets);
         glDisableClientState(GL_VERTEX_ARRAY);
-        resizeGL(600,400);
+       }
 }
 
 void Widget::mousePressEvent(QMouseEvent* mo){
@@ -142,8 +151,8 @@ void Widget:: parcing_3d_files()
     QByteArray tmp = path_to_file.toLocal8Bit();
     char* name_of_file = tmp.data();
 
-    if (!name_of_file) { errors(2); return; }
-    if  (validation_of_files(name_of_file)) return;
+    if (!name_of_file) { errors(2); path_to_file = NULL; return; }
+    if  (validation_of_files(name_of_file)) { path_to_file = NULL; return;}
 
 }
 
@@ -232,34 +241,7 @@ void Widget::change_vertex_type(double x)
     update();
 }
 
-void Widget::ortho_geometry(){
-    double min = 0.0;
-    double max = 0.0;
-    get_max_min_frustum(&max, &min, some_data);
-
-    double coef = 2.0;
-    min_x*=coef;
-    max_x*=coef;
-    min_y*=coef;
-    max_y*=coef;
-    min_z*=coef;
-    max_z*=coef;
-    max *=coef;
-    min *=coef;
-    glOrtho(min, max, min, max, min_z, max_z+100);
-}
-
-void Widget::perspective_geometry() {
-            double coef = 1.2;
-             min_x*=coef;
-             max_x*=coef;
-             min_y*=coef;
-             max_y*=coef;
-             min_z*=coef;
-             max_z*=coef;
-             gluPerspective(60, (max_x-min_x)/(max_y-min_y), 1, 800);
-}
-
-void Widget::change_geo(int change) {
-    if (change) change_geometry = 1;
+void Widget::change_geo() {
+    repaint();
+    update();
 }

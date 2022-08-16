@@ -20,10 +20,11 @@ void MainWindow::on_download_obj_clicked()
     p_test = new Widget(this);
     p_test->show();
     create_screen();
-    information_of_file();
+
     if(!p_test->path_to_file.isNull())
-    ui->download_obj->setCheckable(true);
-    else p_test->errors(1);
+    {ui->download_obj->setCheckable(true); information_of_file();}
+    else {p_test->errors(1);ui->download_obj->setCheckable(false);}
+
 }
 
 void MainWindow::on_change_move_clicked()
@@ -35,7 +36,6 @@ void MainWindow::on_change_move_clicked()
     p_test->for_move(x,y,z);
     p_test->update();
     create_screen();
-
     }
 }
 
@@ -211,24 +211,31 @@ void MainWindow::on_stop_image_clicked()
 }
 
 void MainWindow::information_of_file() {
-    if (ui->download_obj->isCheckable()) {
+   if (ui->download_obj->isCheckable()) {
     int vertex_inf = p_test->some_data.count_of_vertex;
     int polygon_inf = p_test->some_data.count_of_polygons;
     QString str_vertex =  QString::number(vertex_inf, 'g', 15);
     QString str_polygons =  QString::number(polygon_inf, 'g', 15);
     ui->label_of_inf->setText(p_test->path_to_file + "\nКоличество вершин: " + str_vertex + "\nКоличество полигонов: " + str_polygons);
-    }
+   }
 }
 
 
 void MainWindow::on_perspective_clicked()
 {
-    if (ui->download_obj->isCheckable()) p_test->change_geometry = 1;
+    if (ui->download_obj->isCheckable()) {
+    p_test->change_geometry = 1;
+    p_test->change_geo();
+    update();
+   }
 }
 
 
 void MainWindow::on_orthographic_clicked()
 {
-     if (ui->download_obj->isCheckable()) p_test->change_geometry = 0;
+     if (ui->download_obj->isCheckable()) {
+     p_test->change_geometry = 0;
+     p_test->change_geo();
+     }
 }
 

@@ -42,12 +42,11 @@ public:
     int change_geometry = 0;
     double *vertex;
     unsigned int *facets;
+    char* name_of_file;
     data_t some_data;
     QString label_with_inf;
 
 public slots:
-    void ortho_geometry();
-    void perspective_geometry();
     void for_move(double x, double y, double z);
     void for_rot(double x, double y, double z);
     void for_scale(double x);
@@ -60,7 +59,7 @@ public slots:
     void change_line_type_2(double x);
     void change_vertex_type(double x);
     void errors(int error);
-    void change_geo(int change);
+    void change_geo();
 
 private:
     Ui::Widget *ui;
@@ -71,5 +70,6 @@ private:
     int validation_of_files(char* name_file);
     void parcing_3d_files();
     void check_vertex_min_max(double check, int choise);
+    void open_file();
 };
 #endif // WIDGET_H
