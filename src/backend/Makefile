@@ -50,6 +50,29 @@ clean:
 
 rebuild: clean all
 
-study: s21_parsing_object.c
-	$(GCC) $(CFLAGS) $(FILES) study.c -o study.out
-	./study.out
+install:
+	make clean
+	mkdir ../build
+	cd ../s21_3dviewer && qmake && make && make clean && rm Makefile && cd ../ && mv s21_3dviewer/s21_3dviewer.app build
+	open ../build/s21_3dviewer.app/Contents/MacOS/s21_3dviewer
+uninstall:
+	rm -rf ../build*
+open_detscop:
+	open ../build/s21_3dviewer.app/Contents/MacOS/s21_3dviewer
+
+
+# # distViewer2
+# dist:
+#  rm -rf ../distViewer2.0/
+#  rm -rf distViewer2.0
+#  mkdir ../distViewer2.0/
+#  mkdir ../distViewer2.0/src
+#  cp ../build/Viewer2.app/Contents/MacOS/Viewer2 ../distViewer2.0/src/
+#  mv ../distViewer2.0/ .
+#  tar cvzf distViewer2.0.tgz distViewer2.0
+#  open .
+
+# cl:
+#  rm -rf distViewer2.0~
+#  rm -rf ../../distViewer2.0/
+#  rm -rf distViewer2.0
