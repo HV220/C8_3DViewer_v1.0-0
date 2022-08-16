@@ -46,7 +46,7 @@ endif
 	make clean
 
 clean:
-	rm -rf *.a *.o *.gc* *.out *.info *.dSYM test.out report s21_smart_calc
+	rm -rf *.a *.o *.gc* *.out *.info *.dSYM test.out report
 
 rebuild: clean all
 
@@ -60,19 +60,22 @@ uninstall:
 open_detscop:
 	open ../build/s21_3dviewer.app/Contents/MacOS/s21_3dviewer
 
+# dists21_3dviewer
+ dist:
+	rm -rf ../dists21_3dviewer.0/
+	rm -rf dists21_3dviewer.0
+	mkdir ../dists21_3dviewer.0/
+	mkdir ../dists21_3dviewer.0/src
+	cp ../build/s21_3dviewer.app/Contents/MacOS/s21_3dviewer ../dists21_3dviewer.0/src/
+	mv ../dists21_3dviewer.0/ .
+	tar cvzf dists21_3dviewer.0.tgz dists21_3dviewer.0
+	open .
 
-# # distViewer2
-# dist:
-#  rm -rf ../distViewer2.0/
-#  rm -rf distViewer2.0
-#  mkdir ../distViewer2.0/
-#  mkdir ../distViewer2.0/src
-#  cp ../build/Viewer2.app/Contents/MacOS/Viewer2 ../distViewer2.0/src/
-#  mv ../distViewer2.0/ .
-#  tar cvzf distViewer2.0.tgz distViewer2.0
-#  open .
+ cl:
+	rm -rf dists21_3dviewer.0~
+	rm -rf ../dists21_3dviewer.0/
+	rm -rf dists21_3dviewer.0
+	rm -rf dists21_3dviewer.0.tgz
 
-# cl:
-#  rm -rf distViewer2.0~
-#  rm -rf ../../distViewer2.0/
-#  rm -rf distViewer2.0
+dvi:
+	open ../readme.html
