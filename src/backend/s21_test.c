@@ -12,7 +12,7 @@ void s21_matrix_creator(matrix_t *A, double increase) {
 
 START_TEST(test_parser_with_file) {
   char path_of_file[500] =
-      "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/Car.obj";
+      "../obj/Car.obj";
   data_t some_data;
   int error = count_vertexes_polygons(path_of_file, &some_data);
   if (error == 0) {
@@ -31,9 +31,143 @@ START_TEST(test_parser_with_file) {
 }
 END_TEST
 
+// START_TEST(test_count_vertex) {
+//   char path_of_file[500] =
+//       "../obj/Car.obj";
+//   data_t some_data;
+//   int error = count_vertexes_polygons(path_of_file, &some_data);
+//   ck_assert_double_eq(error, 1);
+// }
+// END_TEST
+
+// START_TEST(test_create_mat) {
+//   char path_of_file[500] =
+//       "../obj/Car.obj";
+//   data_t some_data;
+//   int error = create_matrix_obj(path_of_file, &some_data);
+//     ck_assert_double_eq(error, 1);
+// }
+// END_TEST
+
+START_TEST(test_n_v_p) {
+  char path_of_file[500] =
+      "../obj/Car1.obj";
+  data_t some_data;
+  int error = note_vertexes_polygons(path_of_file, &some_data);
+      ck_assert_double_eq(error, 1);
+}
+END_TEST
+
+START_TEST(move_obj_test) {
+  data_t some_data;
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      some_data.matrix.matrix[i][0] = 0;
+      some_data.matrix.matrix[i][1] = 0;
+      some_data.matrix.matrix[i][2] = 0;
+  }
+  move_obj(&some_data, 1, 1, 1);
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      ck_assert_double_eq(some_data.matrix.matrix[i][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[i][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[i][2], 1);
+  }
+}
+END_TEST
+
+START_TEST(scale_obj_test) {
+  data_t some_data;
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      some_data.matrix.matrix[i][0] = 1;
+      some_data.matrix.matrix[i][1] = 1;
+      some_data.matrix.matrix[i][2] = 1;
+  }
+  scale_obj(&some_data, 2);
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      ck_assert_double_eq(some_data.matrix.matrix[i][0], 2);
+      ck_assert_double_eq(some_data.matrix.matrix[i][1], 2);
+      ck_assert_double_eq(some_data.matrix.matrix[i][2], 2);
+  }
+}
+END_TEST
+
+START_TEST(rot_ox_test) {
+  data_t some_data;
+     s21_create_matrix(3, 3, &some_data.matrix);
+        some_data.matrix.matrix[0][0] = 1;
+        some_data.matrix.matrix[0][1] = 1;
+        some_data.matrix.matrix[0][2] = 1;
+        some_data.matrix.matrix[1][0] = 1;
+        some_data.matrix.matrix[1][1] = 1;
+        some_data.matrix.matrix[1][2] = 1;
+        some_data.matrix.matrix[2][0] = 1;
+        some_data.matrix.matrix[2][1] = 1;
+        some_data.matrix.matrix[2][2] = 1;
+    rotation_by_ox(&some_data, 0);
+      ck_assert_double_eq(some_data.matrix.matrix[0][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[0][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[0][2], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][2], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][2], 1);
+}
+END_TEST
+
+START_TEST(rot_oy_test) {
+  data_t some_data;
+     s21_create_matrix(3, 3, &some_data.matrix);
+        some_data.matrix.matrix[0][0] = 1;
+        some_data.matrix.matrix[0][1] = 1;
+        some_data.matrix.matrix[0][2] = 1;
+        some_data.matrix.matrix[1][0] = 1;
+        some_data.matrix.matrix[1][1] = 1;
+        some_data.matrix.matrix[1][2] = 1;
+        some_data.matrix.matrix[2][0] = 1;
+        some_data.matrix.matrix[2][1] = 1;
+        some_data.matrix.matrix[2][2] = 1;
+    rotation_by_oy(&some_data, 0);
+      ck_assert_double_eq(some_data.matrix.matrix[0][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[0][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[0][2], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][2], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][2], 1);
+}
+END_TEST
+
+START_TEST(rot_oz_test) {
+  data_t some_data;
+     s21_create_matrix(3, 3, &some_data.matrix);
+        some_data.matrix.matrix[0][0] = 1;
+        some_data.matrix.matrix[0][1] = 1;
+        some_data.matrix.matrix[0][2] = 1;
+        some_data.matrix.matrix[1][0] = 1;
+        some_data.matrix.matrix[1][1] = 1;
+        some_data.matrix.matrix[1][2] = 1;
+        some_data.matrix.matrix[2][0] = 1;
+        some_data.matrix.matrix[2][1] = 1;
+        some_data.matrix.matrix[2][2] = 1;
+    rotation_by_oz(&some_data, 0);
+      ck_assert_double_eq(some_data.matrix.matrix[0][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[0][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[0][2], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[1][2], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[2][2], 1);
+}
+END_TEST
+
 START_TEST(test_parser_without_file) {
   char path_of_file[500] =
-      "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/Car_no_file.obj";
+      "../obj/Car_no_file.obj";
   data_t some_data;
   int error = count_vertexes_polygons(path_of_file, &some_data);
   if (error == 1) {
@@ -258,6 +392,10 @@ int main() {
   Suite *suite = suite_create("S21_TESTS");
   SRunner *srunner = srunner_create(suite);
 
+//  TCase *g_max_min_test_case = tcase_create("g_max_min_test_case");
+//  suite_add_tcase(suite, g_max_min_test_case);
+//  tcase_add_test(g_max_min_test_case, g_max_min_test);
+
   TCase *s21_3dviewer_1_case = tcase_create("3dviewer_1");
   suite_add_tcase(suite, s21_3dviewer_1_case);
   tcase_add_test(s21_3dviewer_1_case, test_parser_with_file);
@@ -265,6 +403,30 @@ int main() {
   TCase *s21_3dviewer_2_case = tcase_create("3dviewer_2");
   suite_add_tcase(suite, s21_3dviewer_2_case);
   tcase_add_test(s21_3dviewer_2_case, test_parser_without_file);
+
+  TCase *move_obj_case = tcase_create("move_obj_test_case");
+  suite_add_tcase(suite, move_obj_case);
+  tcase_add_test(move_obj_case, move_obj_test);
+
+  TCase *scale_obj_case = tcase_create("scale_obj_test_case");
+  suite_add_tcase(suite, scale_obj_case);
+  tcase_add_test(scale_obj_case, scale_obj_test);
+
+  TCase *test_n_v_p_case = tcase_create("test_n_v_p");
+  suite_add_tcase(suite, test_n_v_p_case);
+  tcase_add_test(test_n_v_p_case, test_n_v_p);
+
+  TCase *rot_ox_case = tcase_create("rot_ox_test_case");
+  suite_add_tcase(suite, rot_ox_case);
+  tcase_add_test(rot_ox_case, rot_ox_test);
+
+  TCase *rot_oy_case = tcase_create("rot_oy_test_case");
+  suite_add_tcase(suite, rot_oy_case);
+  tcase_add_test(rot_oy_case, rot_oy_test);
+
+  TCase *rot_oz_case = tcase_create("rot_oz_test_case");
+  suite_add_tcase(suite, rot_oz_case);
+  tcase_add_test(rot_oz_case, rot_oz_test);
 
   TCase *s21_sum_matrix_test_case = tcase_create("s21_sum_matrix_test_case");
   suite_add_tcase(suite, s21_sum_matrix_test_case);

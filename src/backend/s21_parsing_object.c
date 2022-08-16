@@ -234,10 +234,11 @@ void rotation_by_oz(data_t *some_data, double corner) {
 }
 
 void scale_obj(data_t *some_data, double scale) {
-    matrix_t temp, result;
-       temp = (*some_data).matrix;
-       s21_mult_number(&temp, scale, &result);
-       (*some_data).matrix = result;
+    for (int i = 0; i < some_data->matrix.rows; i++) {
+        some_data->matrix.matrix[i][0] *= scale;
+        some_data->matrix.matrix[i][1] *= scale;
+        some_data->matrix.matrix[i][2] *= scale;
+    }
 }
 
 void get_max_min_frustum(double *max, double *min, data_t obj) {
@@ -256,6 +257,3 @@ void get_max_min_frustum(double *max, double *min, data_t obj) {
     *max = max_vertex;
     *min = min_vertex;
 }
-
-
-
