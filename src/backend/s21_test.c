@@ -15,21 +15,132 @@ START_TEST(test_parser_with_file) {
       "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/Car.obj";
   data_t some_data;
   int error = count_vertexes_polygons(path_of_file, &some_data);
+  ck_assert_double_eq(error, 1);
   if (error == 0) {
     error = create_matrix_obj(path_of_file, &some_data);
+    ck_assert_double_eq(error, 0);
     if (error == 0) {
       error = note_vertexes_polygons(path_of_file, &some_data);
+      ck_assert_double_eq(error, 0);
       if (error == 0) {
         s21_remove_matrix(&some_data.matrix);
+        ck_assert_double_eq(error, 0);
         for (int i = 0; i < some_data.count_of_polygons; i++)
           free(some_data.polygons[i].vertexes);
         free(some_data.polygons);
       }
     }
   }
-  ck_assert_double_eq(error, 0);
+  ck_assert_double_eq(error, 1);
 }
 END_TEST
+
+START_TEST(test_count_vertex) {
+  char path_of_file[500] =
+      "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/Car.obj";
+  data_t some_data;
+  int error = count_vertexes_polygons(path_of_file, &some_data);
+  ck_assert_double_eq(error, 1);
+}
+END_TEST
+
+START_TEST(test_create_mat) {
+  char path_of_file[500] =
+      "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/Car.obj";
+  data_t some_data;
+  int error = create_matrix_obj(path_of_file, &some_data);
+    ck_assert_double_eq(error, 1);
+}
+END_TEST
+
+START_TEST(test_n_v_p) {
+  char path_of_file[500] =
+      "/Users/cauliflb/C8_3DViewer/C8_3DViewer_v1.0-0/src/obj/Car.obj";
+  data_t some_data;
+  int error = note_vertexes_polygons(path_of_file, &some_data);
+      ck_assert_double_eq(error, 1);
+}
+END_TEST
+
+START_TEST(move_obj_test) {
+  data_t some_data;
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      some_data.matrix.matrix[i][0] = 0;
+      some_data.matrix.matrix[i][1] = 0;
+      some_data.matrix.matrix[i][2] = 0;
+  }
+  move_obj(&some_data, 1, 1, 1);
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      ck_assert_double_eq(some_data.matrix.matrix[i][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[i][1], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[i][2], 1);
+  }
+}
+END_TEST
+
+START_TEST(scale_obj_test) {
+  data_t some_data;
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      some_data.matrix.matrix[i][0] = 1;
+      some_data.matrix.matrix[i][1] = 1;
+      some_data.matrix.matrix[i][2] = 1;
+  }
+  scale_obj(&some_data, 2);
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      ck_assert_double_eq(some_data.matrix.matrix[i][0], 2);
+      ck_assert_double_eq(some_data.matrix.matrix[i][1], 2);
+      ck_assert_double_eq(some_data.matrix.matrix[i][2], 2);
+  }
+}
+END_TEST
+
+START_TEST(rot_ox_test) {
+  data_t some_data;
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      some_data.matrix.matrix[i][0] = 1;
+      some_data.matrix.matrix[i][1] = 1;
+      some_data.matrix.matrix[i][2] = 1;
+  }
+  rotation_by_ox(&some_data, 30);
+  for (int i = 0; i < some_data.matrix.rows; i++) {
+      ck_assert_double_eq(some_data.matrix.matrix[i][0], 1);
+      ck_assert_double_eq(some_data.matrix.matrix[i][1], 0);
+      ck_assert_double_eq(some_data.matrix.matrix[i][2], 0);
+  }
+}
+END_TEST
+
+//START_TEST(rot_oy_test) {
+//  data_t some_data;
+//  for (int i = 0; i < some_data.matrix.rows; i++) {
+//      some_data.matrix.matrix[i][0] = 1;
+//      some_data.matrix.matrix[i][1] = 1;
+//      some_data.matrix.matrix[i][2] = 1;
+//  }
+//  rotation_by_oy(&some_data, 30);
+//  for (int i = 0; i < some_data.matrix.rows; i++) {
+//      ck_assert_double_eq(some_data.matrix.matrix[i][0], 1);
+//      ck_assert_double_eq(some_data.matrix.matrix[i][1], 1);
+//      ck_assert_double_eq(some_data.matrix.matrix[i][2], 1);
+//  }
+//}
+//END_TEST
+
+//START_TEST(rot_oz_test) {
+//  data_t some_data;
+//  for (int i = 0; i < some_data.matrix.rows; i++) {
+//      some_data.matrix.matrix[i][0] = 1;
+//      some_data.matrix.matrix[i][1] = 1;
+//      some_data.matrix.matrix[i][2] = 1;
+//  }
+//  rotation_by_oz(&some_data, 30);
+//  for (int i = 0; i < some_data.matrix.rows; i++) {
+//      ck_assert_double_eq(some_data.matrix.matrix[i][0], 1);
+//      ck_assert_double_eq(some_data.matrix.matrix[i][1], 1);
+//      ck_assert_double_eq(some_data.matrix.matrix[i][2], 1);
+//  }
+//}
+//END_TEST
 
 START_TEST(test_parser_without_file) {
   char path_of_file[500] =
@@ -266,6 +377,38 @@ int main() {
   suite_add_tcase(suite, s21_3dviewer_2_case);
   tcase_add_test(s21_3dviewer_2_case, test_parser_without_file);
 
+  TCase *move_obj_case = tcase_create("move_obj_test_case");
+  suite_add_tcase(suite, move_obj_case);
+  tcase_add_test(move_obj_case, move_obj_test);
+
+  TCase *scale_obj_case = tcase_create("scale_obj_test_case");
+  suite_add_tcase(suite, scale_obj_case);
+  tcase_add_test(scale_obj_case, scale_obj_test);
+
+  TCase *test_count_vertex_case = tcase_create("test_count_vertex_scale");
+  suite_add_tcase(suite, test_count_vertex_case);
+  tcase_add_test(test_count_vertex_case, test_count_vertex);
+
+  TCase *test_create_mat_case = tcase_create("test_create_mat_scale");
+  suite_add_tcase(suite, test_create_mat_case);
+  tcase_add_test(test_create_mat_case, test_create_mat);
+
+  TCase *test_n_v_p_case = tcase_create("test_n_v_p");
+  suite_add_tcase(suite, test_n_v_p_case);
+  tcase_add_test(test_n_v_p_case, test_n_v_p);
+
+  TCase *rot_ox_case = tcase_create("rot_ox_test_case");
+  suite_add_tcase(suite, rot_ox_case);
+  tcase_add_test(rot_ox_case, rot_ox_test);
+
+//  TCase *rot_oy_case = tcase_create("rot_oy_test_case");
+//  suite_add_tcase(suite, rot_oy_case);
+//  tcase_add_test(rot_oy_case, rot_oy_test);
+
+//  TCase *rot_oz_case = tcase_create("rot_oz_test_case");
+//  suite_add_tcase(suite, rot_oz_case);
+//  tcase_add_test(rot_oz_case, rot_oz_test);
+
   TCase *s21_sum_matrix_test_case = tcase_create("s21_sum_matrix_test_case");
   suite_add_tcase(suite, s21_sum_matrix_test_case);
   tcase_add_test(s21_sum_matrix_test_case, s21_sum_matrix_test);
@@ -296,7 +439,7 @@ int main() {
 
   TCase *s21_inverse_matrix_case = tcase_create("s21_inverse_matrix_case");
   suite_add_tcase(suite, s21_inverse_matrix_case);
-  tcase_add_test(s21_inverse_matrix_case, s21_inverse_matrix_test);
+  tcase_add_test(s21_inverse_matrix_case, s21_inverse_matrix_test); 
 
   srunner_run_all(srunner, CK_VERBOSE);
   int number_failed = srunner_ntests_failed(srunner);
